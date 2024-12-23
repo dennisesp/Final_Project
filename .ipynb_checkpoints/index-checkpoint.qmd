@@ -1,0 +1,8 @@
+---
+title: "MUSA 550: Final Project "
+subtitle: "Analyzing Educational and Socioeconomic Disparities for Latino and Afro-Latino Communities in Philadelphia Through Geospatial Analysis"
+---
+
+## Welcome!
+
+This project, titled "Analyzing Educational and Socioeconomic Disparities for Latino and Afro-Latino Communities in Philadelphia Through Geospatial Analysis," employs advanced geospatial techniques to examine the role of geography in shaping access to educational opportunities and socioeconomic outcomes. By visualizing and analyzing key datasets, this research aims to highlight systemic barriers and inform equitable solutions for underrepresented communities in Philadelphia.
