@@ -4,136 +4,220 @@
     "href": "about.html",
     "title": "About Me",
     "section": "",
-    "text": "Hello everyone\n\n\nOn this about page, you might want to add more information about yourself, the project, or course.\n\n\nMy name is Dennis Espejo, a master’s student.\nYou can find more information about me on my personal website.\nThis site is an example site showing how to use Quarto for the final project for MUSA 550, during fall 2024.\nWrite something about you\n\nor about something you like",
+    "text": "About the Author\nHey Everyone! My name is Dennis Espejo, I’m a master’s student in Higher Education at Penn GSE.\n\n\nMotivation Behind the Current Project\nThis project “Latino & Afro-Latino Landscapes: Geospatial Data Science Revealing Disparities in Philadelphia” is based off of my current research projects looking at the different post-secondary educational trajectories of different identities within the Latine identity. In this case, I’m looking at differing educational trajectories of Black or Afro-Latine, and White-Latines, two distinct identities that get aggregated under the Latine monolith. I hope to shed light on the differing experiences of diverse communities under the Latine monolith, to ensure a decrease of their marginalization through institutional data practices that lump everyone together in an umbrella “Latine/Hispanic” category.\n\n\nFun Facts\nIn my free time, I love to lift weights, play video games, read, and pet my cat Reymundo (pictured below).",
     "crumbs": [
       "About Me"
     ]
   },
   {
-    "objectID": "analysis/2-static-images.html",
-    "href": "analysis/2-static-images.html",
-    "title": "Showing static visualizations",
+    "objectID": "analysis_2/2.2.html",
+    "href": "analysis_2/2.2.html",
+    "title": "2.2 Creating a Folium Map of Post-secondary buildings per census tracts",
     "section": "",
-    "text": "This page is generated from a Jupyter notebook and demonstrates how to generate static visualizations with matplotlib, pandas, and seaborn.\nStart by importing the packages we need:\nimport pandas as pd\nfrom matplotlib import pyplot as plt\nimport seaborn as sns\nLoad the “Palmer penguins” dataset from week 2:\n# Load data on Palmer penguins\npenguins = pd.read_csv(\"https://raw.githubusercontent.com/MUSA-550-Fall-2023/week-2/main/data/penguins.csv\")\n# Show the first ten rows\npenguins.head(n=10)    \n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\nyear\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nmale\n2007\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nfemale\n2007\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nfemale\n2007\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n2007\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nfemale\n2007\n\n\n5\nAdelie\nTorgersen\n39.3\n20.6\n190.0\n3650.0\nmale\n2007\n\n\n6\nAdelie\nTorgersen\n38.9\n17.8\n181.0\n3625.0\nfemale\n2007\n\n\n7\nAdelie\nTorgersen\n39.2\n19.6\n195.0\n4675.0\nmale\n2007\n\n\n8\nAdelie\nTorgersen\n34.1\n18.1\n193.0\n3475.0\nNaN\n2007\n\n\n9\nAdelie\nTorgersen\n42.0\n20.2\n190.0\n4250.0\nNaN\n2007",
+    "text": "Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.\nIntel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook",
     "crumbs": [
-      "Analysis",
-      "Showing static visualizations"
+      "Part 2: Correlation Between Demographics and Post-Secondary Buildings Per Tract",
+      "2.2 Creating a Folium Map of  Post-secondary buildings per census tracts"
     ]
   },
   {
-    "objectID": "analysis/2-static-images.html#a-simple-visualization-3-different-ways",
-    "href": "analysis/2-static-images.html#a-simple-visualization-3-different-ways",
-    "title": "Showing static visualizations",
-    "section": "A simple visualization, 3 different ways",
-    "text": "A simple visualization, 3 different ways\n\nI want to scatter flipper length vs. bill length, colored by the penguin species\n\n\nUsing matplotlib\n\n# Setup a dict to hold colors for each species\ncolor_map = {\"Adelie\": \"#1f77b4\", \"Gentoo\": \"#ff7f0e\", \"Chinstrap\": \"#D62728\"}\n\n# Initialize the figure \"fig\" and axes \"ax\"\nfig, ax = plt.subplots(figsize=(10, 6))\n\n# Group the data frame by species and loop over each group\n# NOTE: \"group\" will be the dataframe holding the data for \"species\"\nfor species, group_df in penguins.groupby(\"species\"):\n\n    # Plot flipper length vs bill length for this group\n    # Note: we are adding this plot to the existing \"ax\" object\n    ax.scatter(\n        group_df[\"flipper_length_mm\"],\n        group_df[\"bill_length_mm\"],\n        marker=\"o\",\n        label=species,\n        color=color_map[species],\n        alpha=0.75,\n        zorder=10\n    )\n\n# Plotting is done...format the axes!\n\n## Add a legend to the axes\nax.legend(loc=\"best\")\n\n## Add x-axis and y-axis labels\nax.set_xlabel(\"Flipper Length (mm)\")\nax.set_ylabel(\"Bill Length (mm)\")\n\n## Add the grid of lines\nax.grid(True);\n\n\n\n\n\n\n\n\n\n\nHow about in pandas?\nDataFrames have a built-in “plot” function that can make all of the basic type of matplotlib plots!\nFirst, we need to add a new “color” column specifying the color to use for each species type.\nUse the pd.replace() function: it use a dict to replace values in a DataFrame column.\n\n# Calculate a list of colors\ncolor_map = {\"Adelie\": \"#1f77b4\", \"Gentoo\": \"#ff7f0e\", \"Chinstrap\": \"#D62728\"}\n\n# Map species name to color \npenguins[\"color\"] = penguins[\"species\"].replace(color_map)\n\npenguins.head()\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\nyear\ncolor\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nmale\n2007\n#1f77b4\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nfemale\n2007\n#1f77b4\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nfemale\n2007\n#1f77b4\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n2007\n#1f77b4\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nfemale\n2007\n#1f77b4\n\n\n\n\n\n\n\nNow plot!\n\n# Same as before: Start by initializing the figure and axes\nfig, myAxes = plt.subplots(figsize=(10, 6))\n\n# Scatter plot two columns, colored by third\n# Use the built-in pandas plot.scatter function\npenguins.plot.scatter(\n    x=\"flipper_length_mm\",\n    y=\"bill_length_mm\",\n    c=\"color\",\n    alpha=0.75,\n    ax=myAxes, # IMPORTANT: Make sure to plot on the axes object we created already!\n    zorder=10\n)\n\n# Format the axes finally\nmyAxes.set_xlabel(\"Flipper Length (mm)\")\nmyAxes.set_ylabel(\"Bill Length (mm)\")\nmyAxes.grid(True);\n\n\n\n\n\n\n\n\nNote: no easy way to get legend added to the plot in this case…\n\n\nSeaborn: statistical data visualization\nSeaborn is designed to plot two columns colored by a third column…\n\n# Initialize the figure and axes\nfig, ax = plt.subplots(figsize=(10, 6))\n\n# style keywords as dict\ncolor_map = {\"Adelie\": \"#1f77b4\", \"Gentoo\": \"#ff7f0e\", \"Chinstrap\": \"#D62728\"}\nstyle = dict(palette=color_map, s=60, edgecolor=\"none\", alpha=0.75, zorder=10)\n\n# use the scatterplot() function\nsns.scatterplot(\n    x=\"flipper_length_mm\",  # the x column\n    y=\"bill_length_mm\",  # the y column\n    hue=\"species\",  # the third dimension (color)\n    data=penguins,  # pass in the data\n    ax=ax,  # plot on the axes object we made\n    **style  # add our style keywords\n)\n\n# Format with matplotlib commands\nax.set_xlabel(\"Flipper Length (mm)\")\nax.set_ylabel(\"Bill Length (mm)\")\nax.grid(True)\nax.legend(loc=\"best\");",
+    "objectID": "analysis_2/2.2.html#analysis",
+    "href": "analysis_2/2.2.html#analysis",
+    "title": "2.2 Creating a Folium Map of Post-secondary buildings per census tracts",
+    "section": "Analysis",
+    "text": "Analysis\nAs expected, most buildings are neighboring their campuses, with the heaviest concentration of buildings in the University City Area. However, the median household incomes of census tracts containing college buildings are relatively low. The high concentration of college buildings in lower median household income tracts could be attributred to two causes\n\nThe adults who are reporting their incomes in census tracts with college buildings are post-secondary students who do not have a full time job. For example, there is a relatively high median income of the tracts with a CCP building. CCP is a commuter school in which many students are also part time students who likely have a full time job, and are not living in the area.\nThe history of gentrification in Philadelphia by post-secondary instiutions. For example, Temple University has an extensive history of gentrification within lower income neighboorhoods in North Philadelphia (CITE)\n\nHowever, my previous rationale is only based off of direct observation of the Folium map. Part 2.3 will give a more concrete statistical analysis of the trends mapped above.",
     "crumbs": [
-      "Analysis",
-      "Showing static visualizations"
+      "Part 2: Correlation Between Demographics and Post-Secondary Buildings Per Tract",
+      "2.2 Creating a Folium Map of  Post-secondary buildings per census tracts"
+    ]
+  },
+  {
+    "objectID": "analysis_2/2.1.html",
+    "href": "analysis_2/2.1.html",
+    "title": "2.1 Data Merging and Cleaning",
+    "section": "",
+    "text": "Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.\nIntel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.\n\n\n\n\n\n\n\n\n\n\n\n\n2.1 Data Merging and Cleaning\nIn this part I,\n\nDownload the data from open data Philly, and the geojson demographic/tract dataframe from Part 1.1\nMerge both of the data frames\nClean the data frame contaning columns that I want for the analysis\nExport the cleaned dataframe for use in part 2.2\n\n\n\nCode\ncollege_buildings=gpd.read_file(\"Universities_Colleges.geojson\")\n\ndemographics_with_tracts= gpd.read_file(\"identity_with_tracts.geojson\")\n\nbuildings_with_tract = gpd.sjoin(\n    college_buildings,\n    demographics_with_tracts.to_crs(college_buildings.crs),\n    how='left',\n    predicate=\"within\",\n)\n\n\n\n\n\n\n\ncolumns_to_keep = ['NAME_left', 'ADDRESS', 'BUILDING_DESCRIPTION',\n       'geometry', 'Black and Latino/Hispanic',\n       'Total Population', 'Median Household Income', \n       'Bachelors Degree or Higher',  'Associates Degree',\n       'Masters Degree', 'White and Latino/Hispanic',\n       'tract']\n\nbuildings_with_tract_clean = buildings_with_tract[columns_to_keep]\n\nbuildings_with_tract_clean.to_file(\"buildings_per_tract.geojson\")\n\nbuildings_with_tract_clean\n\n\n\n\n\n\n\n\n\nNAME_left\nADDRESS\nBUILDING_DESCRIPTION\ngeometry\nBlack and Latino/Hispanic\nTotal Population\nMedian Household Income\nBachelors Degree or Higher\nAssociates Degree\nMasters Degree\nWhite and Latino/Hispanic\ntract\n\n\n\n\n0\nTemple University\n2450 W HUNTING PARK AVE\nOFF/BLD N/COMM W-PKG MASO\nPOLYGON ((-75.16740 40.00671, -75.16732 40.006...\n115\n3240\n26025.0\n170\n260\n56\n0\n017100\n\n\n1\nTemple University\n1501-39 MARKET ST\nOFF/BLDG COMM NO GAR MASO\nPOLYGON ((-75.16527 39.95312, -75.16660 39.953...\n0\n775\n208824.0\n344\n54\n206\n73\n000403\n\n\n2\nTemple University Medical\n801 CHERRY ST\nAPTS 51-100UNTS MASONRY\nPOLYGON ((-75.15294 39.95452, -75.15371 39.954...\n0\n3175\n83854.0\n937\n143\n126\n106\n000200\n\n\n3\nTemple University Medical\n800-20 RACE ST\nSCHOOL 7STY MASONRY\nPOLYGON ((-75.15290 39.95473, -75.15285 39.954...\n0\n3175\n83854.0\n937\n143\n126\n106\n000200\n\n\n4\nTemple University Medical\n191-99 E HUNTINGDON ST\nHSE WORSHIP ALL3STY MASON\nPOLYGON ((-75.12736 39.98930, -75.12789 39.989...\n14\n3204\n19269.0\n124\n40\n0\n825\n016300\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n624\nSaint Joseph's University\n6300-18 CITY AVE\nAPTS DORMITORY MASONRY\nPOLYGON ((-75.25085 39.98963, -75.25086 39.989...\n37\n3727\n69205.0\n612\n279\n506\n83\n037500\n\n\n625\nSaint Joseph's University\n2443-45 N 54TH ST\nSCHOOL 1STY MASONRY\nPOLYGON ((-75.23392 39.99543, -75.23389 39.995...\n0\n2132\n76190.0\n178\n110\n241\n53\n012000\n\n\n626\nSaint Joseph's University\n6050 OVERBROOK AVE\nAPTS 5-50 UNTS MASONRY\nPOLYGON ((-75.24768 39.99056, -75.24816 39.990...\n37\n3727\n69205.0\n612\n279\n506\n83\n037500\n\n\n627\nAcademy of Vocal Arts\n1916 SPRUCE ST\nSCHOOL 4STY MASONRY\nPOLYGON ((-75.17349 39.94799, -75.17356 39.948...\n0\n1827\n95900.0\n634\n37\n345\n184\n001203\n\n\n628\nAcademy of Vocal Arts\n1918-20 SPRUCE ST\nSCHOOL 4STY MASONRY\nPOLYGON ((-75.17358 39.94800, -75.17376 39.948...\n0\n1827\n95900.0\n634\n37\n345\n184\n001203\n\n\n\n\n629 rows × 12 columns\n\n\n\n\n\nNow I have all of the college buildings across Philadelphia with their geometries, census tracts, and demographics of the census tracts they are in. This is essential for part 2.2",
+    "crumbs": [
+      "Part 2: Correlation Between Demographics and Post-Secondary Buildings Per Tract",
+      "2.1 Data Merging and Cleaning"
+    ]
+  },
+  {
+    "objectID": "analysis/python-code-blocks.html",
+    "href": "analysis/python-code-blocks.html",
+    "title": "Python code blocks",
+    "section": "",
+    "text": "This is an example from the Quarto documentation that shows how to mix executable Python code blocks into a markdown file in a “Quarto markdown” .qmd file.\nFor a demonstration of a line plot on a polar axis, see Figure 1.\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1: A line plot on a polar axis"
+  },
+  {
+    "objectID": "analysis/2-Choropleth.html",
+    "href": "analysis/2-Choropleth.html",
+    "title": "1.2 Creating Black/White Latino Per Tract Choropleth Map",
+    "section": "",
+    "text": "Below you’ll find Black/White Latino Per Tract Choropleth Map using hvplot with the “Melted_DF” data set from part 1.1\nThis is a tool to demonstrate the spread of different Races/Ethnicities Across Philadelphia Including “Black and Latino/Hispanic” and “White and Latino/Hispanic”\nIntel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.\nIntel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.",
+    "crumbs": [
+      "Part 1: Black Latine vs White Latine Median Household Incomes",
+      "1.2 Creating Black/White Latino Per Tract Choropleth Map"
+    ]
+  },
+  {
+    "objectID": "analysis/2-Choropleth.html#analysis",
+    "href": "analysis/2-Choropleth.html#analysis",
+    "title": "1.2 Creating Black/White Latino Per Tract Choropleth Map",
+    "section": "Analysis",
+    "text": "Analysis\nThe above choropleth Map can give a good general visualization of the spread of Latine communities across Philadelphia. We see that the census tracts closer to NorthEast Philadelphia have a larger “White/Latine Population” than “Black/Latine Population”. NorthEast Philadelphia is known to be an area with a large median socioeconomic status in comparison to the more Northern areas (CITE) where “Black and Latine/Hispanic” populations are located, indicating a potential higher prevelance of “White/Latines” in areas with higher income.\nPart 1.3 will check the validity of the previous claim “potential higher prevelance of”White/Latines” in areas with higher income” through a comparison of the mean household incomes in tracts with higher concentrations of Black/Latines than White Latines and vice-versa.",
+    "crumbs": [
+      "Part 1: Black Latine vs White Latine Median Household Incomes",
+      "1.2 Creating Black/White Latino Per Tract Choropleth Map"
     ]
   },
   {
     "objectID": "analysis/index.html",
     "href": "analysis/index.html",
-    "title": "Analysis",
+    "title": "Part 1: Black Latine vs White Latine Median Household Incomes",
     "section": "",
-    "text": "Analysis\nThis section includes examples of technical analysis done using Jupyter notebooks. Each sub-section highlights different types of analyses and visualizations. In particular, it highlights that we can easily publish interactive visualizations produced with packages such as hvPlot, altair, or Folium, without losing any of the interactive features.\nOn this page, you might want to share more introductory or background information about the analyses to help guide the reader.",
+    "text": "Part 1: Black Latine vs White Latine Median Household Incomes\n\n\nGoals of Part 1\nPart 1 is Dedicated to Answering the Following Research Question\n\nWhat are the differences in Median Household Income of tracts that contain more Black and Latino/Hispanics in comparison to White and Latino/Hispanic?\n\n\n\nWhat you’ll see in Part 1\n\nCollection of Philadelphia’s Demographic Data Per Census Tract through the Census API\nDownloading Philadelphia’s shapefiles\nMerging shapefiles with census demographic information\nCleaning and Mapping Demographic Data per Race/Ethnicity on a Hvplot Choropleth Map\nTesting Choropleth Observations with an Altair Barplot comparing Median Household Income of predominant White Latine vs Black Latine census tracts.",
     "crumbs": [
-      "Analysis"
+      "Part 1: Black Latine vs White Latine Median Household Incomes"
     ]
   },
   {
-    "objectID": "analysis/3-altair-hvplot.html",
-    "href": "analysis/3-altair-hvplot.html",
-    "title": "Altair and Hvplot Charts",
+    "objectID": "analysis/3-Bar_graph.html",
+    "href": "analysis/3-Bar_graph.html",
+    "title": "1.3 Comparing Black/White Latino Per Tract Median Household Income",
     "section": "",
-    "text": "This page is generated from a Jupyter notebook and shows examples of embedding interactive charts produced using Altair and hvPlot.",
+    "text": "Using the “identity_with_tracts” geojson from Part 1.1 I’ll create a bargraph with Altair to compare the Median Household Income of tracts that have more Black Latinos than White Latinos and Vice Versa\nIntel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.\nIntel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.",
     "crumbs": [
-      "Analysis",
-      "Altair and Hvplot Charts"
+      "Part 1: Black Latine vs White Latine Median Household Incomes",
+      "1.3 Comparing Black/White Latino Per Tract Median Household Income"
     ]
   },
   {
-    "objectID": "analysis/3-altair-hvplot.html#example-measles-incidence-in-altair",
-    "href": "analysis/3-altair-hvplot.html#example-measles-incidence-in-altair",
-    "title": "Altair and Hvplot Charts",
-    "section": "Example: Measles Incidence in Altair",
-    "text": "Example: Measles Incidence in Altair\nFirst, let’s load the data for measles incidence in wide format:\n\n\nCode\nurl = \"https://raw.githubusercontent.com/MUSA-550-Fall-2023/week-2/main/data/measles_incidence.csv\"\ndata = pd.read_csv(url, skiprows=2, na_values=\"-\")\n\n\n\n\n\n\n\n\n\n\n\nYEAR\nWEEK\nALABAMA\nALASKA\nARIZONA\nARKANSAS\nCALIFORNIA\nCOLORADO\nCONNECTICUT\nDELAWARE\n...\nSOUTH DAKOTA\nTENNESSEE\nTEXAS\nUTAH\nVERMONT\nVIRGINIA\nWASHINGTON\nWEST VIRGINIA\nWISCONSIN\nWYOMING\n\n\n\n\n0\n1928\n1\n3.67\nNaN\n1.90\n4.11\n1.38\n8.38\n4.50\n8.58\n...\n5.69\n22.03\n1.18\n0.4\n0.28\nNaN\n14.83\n3.36\n1.54\n0.91\n\n\n1\n1928\n2\n6.25\nNaN\n6.40\n9.91\n1.80\n6.02\n9.00\n7.30\n...\n6.57\n16.96\n0.63\nNaN\n0.56\nNaN\n17.34\n4.19\n0.96\nNaN\n\n\n2\n1928\n3\n7.95\nNaN\n4.50\n11.15\n1.31\n2.86\n8.81\n15.88\n...\n2.04\n24.66\n0.62\n0.2\n1.12\nNaN\n15.67\n4.19\n4.79\n1.36\n\n\n3\n1928\n4\n12.58\nNaN\n1.90\n13.75\n1.87\n13.71\n10.40\n4.29\n...\n2.19\n18.86\n0.37\n0.2\n6.70\nNaN\n12.77\n4.66\n1.64\n3.64\n\n\n4\n1928\n5\n8.03\nNaN\n0.47\n20.79\n2.38\n5.13\n16.80\n5.58\n...\n3.94\n20.05\n1.57\n0.4\n6.70\nNaN\n18.83\n7.37\n2.91\n0.91\n\n\n\n\n5 rows × 53 columns\n\n\n\nThen, use the pandas.melt() function to convert it to tidy format:\n\n\nCode\nannual = data.drop(\"WEEK\", axis=1)\nmeasles = annual.groupby(\"YEAR\").sum().reset_index()\nmeasles = measles.melt(id_vars=\"YEAR\", var_name=\"state\", value_name=\"incidence\")\n\n\n\n\n\n\n\n\n\n\n\nYEAR\nstate\nincidence\n\n\n\n\n0\n1928\nALABAMA\n334.99\n\n\n1\n1929\nALABAMA\n111.93\n\n\n2\n1930\nALABAMA\n157.00\n\n\n3\n1931\nALABAMA\n337.29\n\n\n4\n1932\nALABAMA\n10.21\n\n\n\n\n\n\n\nFinally, load altair:\n\nimport altair as alt\n\nAnd generate our final data viz:\n\n# use a custom color map\ncolormap = alt.Scale(\n    domain=[0, 100, 200, 300, 1000, 3000],\n    range=[\n        \"#F0F8FF\",\n        \"cornflowerblue\",\n        \"mediumseagreen\",\n        \"#FFEE00\",\n        \"darkorange\",\n        \"firebrick\",\n    ],\n    type=\"sqrt\",\n)\n\n# Vertical line for vaccination year\nthreshold = pd.DataFrame([{\"threshold\": 1963}])\n\n# plot YEAR vs state, colored by incidence\nchart = (\n    alt.Chart(measles)\n    .mark_rect()\n    .encode(\n        x=alt.X(\"YEAR:O\", axis=alt.Axis(title=None, ticks=False)),\n        y=alt.Y(\"state:N\", axis=alt.Axis(title=None, ticks=False)),\n        color=alt.Color(\"incidence:Q\", sort=\"ascending\", scale=colormap, legend=None),\n        tooltip=[\"state\", \"YEAR\", \"incidence\"],\n    )\n    .properties(width=650, height=500)\n)\n\nrule = alt.Chart(threshold).mark_rule(strokeWidth=4).encode(x=\"threshold:O\")\n\nout = chart + rule\nout",
+    "objectID": "analysis/3-Bar_graph.html#analysis",
+    "href": "analysis/3-Bar_graph.html#analysis",
+    "title": "1.3 Comparing Black/White Latino Per Tract Median Household Income",
+    "section": "Analysis",
+    "text": "Analysis\nBased off of the above Altair bar plot, the following conclusion can be made;\nOn average, census tracts with a higher amount of Black Latine/Hispanics have a median “Median Household Income” that is around $13,000 less compared to census tracts with a higher reported population of White Latine/Hispanics as reported in the 2020 American Community Survey\nTo answer the first question 1) Census Tracts",
     "crumbs": [
-      "Analysis",
-      "Altair and Hvplot Charts"
+      "Part 1: Black Latine vs White Latine Median Household Incomes",
+      "1.3 Comparing Black/White Latino Per Tract Median Household Income"
     ]
   },
   {
-    "objectID": "analysis/3-altair-hvplot.html#example-measles-incidence-in-hvplot",
-    "href": "analysis/3-altair-hvplot.html#example-measles-incidence-in-hvplot",
-    "title": "Altair and Hvplot Charts",
-    "section": "Example: Measles Incidence in hvplot",
-    "text": "Example: Measles Incidence in hvplot\n\n\n\n\n\n\n\n\n\n\n\nGenerate the same data viz in hvplot:\n\n# Make the heatmap with hvplot\nheatmap = measles.hvplot.heatmap(\n    x=\"YEAR\",\n    y=\"state\",\n    C=\"incidence\", # color each square by the incidence\n    reduce_function=np.sum, # sum the incidence for each state/year\n    frame_height=450,\n    frame_width=600,\n    flip_yaxis=True,\n    rot=90,\n    colorbar=False,\n    cmap=\"viridis\",\n    xlabel=\"\",\n    ylabel=\"\",\n)\n\n# Some additional formatting using holoviews \n# For more info: http://holoviews.org/user_guide/Customizing_Plots.html\nheatmap = heatmap.redim(state=\"State\", YEAR=\"Year\")\nheatmap = heatmap.opts(fontsize={\"xticks\": 0, \"yticks\": 6}, toolbar=\"above\")\nheatmap",
-    "crumbs": [
-      "Analysis",
-      "Altair and Hvplot Charts"
-    ]
-  },
-  {
-    "objectID": "analysis/1-python-code-blocks.html",
-    "href": "analysis/1-python-code-blocks.html",
-    "title": "Python code blocks",
+    "objectID": "analysis/1-data_cleaning.html",
+    "href": "analysis/1-data_cleaning.html",
+    "title": "1.1 Data Collection and Cleaning Process",
     "section": "",
-    "text": "This is an example from the Quarto documentation that shows how to mix executable Python code blocks into a markdown file in a “Quarto markdown” .qmd file.\nFor a demonstration of a line plot on a polar axis, see Figure 1.\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1: A line plot on a polar axis",
+    "text": "Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.\nIntel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.",
     "crumbs": [
-      "Analysis",
-      "Python code blocks"
+      "Part 1: Black Latine vs White Latine Median Household Incomes",
+      "1.1 Data Collection and Cleaning Process"
     ]
   },
   {
-    "objectID": "analysis/4-folium.html",
-    "href": "analysis/4-folium.html",
-    "title": "Interactive Maps with Folium",
+    "objectID": "analysis/1-data_cleaning.html#queing-the-census-api-and-creating-dataframe",
+    "href": "analysis/1-data_cleaning.html#queing-the-census-api-and-creating-dataframe",
+    "title": "1.1 Data Collection and Cleaning Process",
+    "section": "Queing the Census API and Creating DataFrame",
+    "text": "Queing the Census API and Creating DataFrame\nFirst I’ll que the census API to download the demographic variables needed for this project\n\nMost Race/Ethnic Categories\nMedian Household Income\nTotal Population\nPost-secondary completion (Associates, Bachelors, & Masters)\n\nNext, I turn the requested information into a dataframe, transforming the Census tracts with negative values to 0 so it doesn’t interfere with my mapping and calculations later down the line.\n\n\nCode\nimport requests\nimport pandas as pd\n\n\napi_key = 'e4257eb23558f9d666c87ad6dc303db358377420'\n\n\nbase_url = \"https://api.census.gov/data/2020/acs/acs5\"\n\n\nparams = {\n    \"get\": \"B03002_001E,B19013_001E,B03002_014E,B15003_022E,B15003_021E,B15003_023E,B03002_013E,B02001_002E,B02001_003E,B03001_003E,B03001_005E,B03001_007E\",\n    \"for\": \"tract:*\",  \n    \"in\": \"state:42 county:101\",  \n    \"key\": api_key\n}\n\n\nresponse = requests.get(base_url, params=params)\n\nif response.status_code != 200:\n    print(\"Error: Failed to retrieve data\")\n    print(response.text)\nelse:\n    print(\"Request successful\")\n    data = response.json()\n\n  \n    columns = data[0]  \n    values = data[1:]  \n\n\n    df = pd.DataFrame(values, columns=columns)\n\n\n    df.rename(columns={\n        'B03002_001E': 'Total Population',\n        'B19013_001E': 'Median Household Income',\n        'B03002_014E': 'Black and Latino/Hispanic',\n        'B15003_022E': \"Bachelors Degree or Higher\",\n        'B15003_021E': \"Associates Degree\",\n        'B15003_023E': \"Masters Degree\",\n        'B03002_013E': 'White and Latino/Hispanic',\n        'B02001_002E': 'White Alone (Total)',\n        'B02001_003E': 'Black or African American Alone',\n        'B03001_003E': 'Hispanic or Latino Total',\n        'B03001_007E': 'Dominican',\n        'B03001_005E': 'Puerto Rican',\n        \n    }, inplace=True)\n\n  \n    df.fillna(0, inplace=True)\n    df['Median Household Income'] = pd.to_numeric(df['Median Household Income'], errors='coerce')\n    df.loc[df['Median Household Income'] &lt; 0, 'Median Household Income'] = 0\n\n\ndf.head()\n\n\nRequest successful\n\n\n\n\n\n\n\n\n\nTotal Population\nMedian Household Income\nBlack and Latino/Hispanic\nBachelors Degree or Higher\nAssociates Degree\nMasters Degree\nWhite and Latino/Hispanic\nWhite Alone (Total)\nBlack or African American Alone\nHispanic or Latino Total\nPuerto Rican\nDominican\nstate\ncounty\ntract\n\n\n\n\n0\n4098\n80470\n60\n1083\n177\n518\n475\n2864\n428\n785\n141\n0\n42\n101\n002701\n\n\n1\n4300\n76060\n0\n991\n338\n427\n117\n3680\n124\n325\n168\n0\n42\n101\n002702\n\n\n2\n4452\n65847\n18\n555\n404\n328\n499\n2119\n312\n1203\n57\n0\n42\n101\n002801\n\n\n3\n5772\n67585\n289\n1566\n91\n698\n289\n3718\n510\n685\n107\n0\n42\n101\n002802\n\n\n4\n3762\n66932\n35\n865\n80\n600\n290\n3018\n85\n544\n159\n35\n42\n101\n002900",
+    "crumbs": [
+      "Part 1: Black Latine vs White Latine Median Household Incomes",
+      "1.1 Data Collection and Cleaning Process"
+    ]
+  },
+  {
+    "objectID": "analysis/1-data_cleaning.html#using-pygris-to-download-census-tract-geometries",
+    "href": "analysis/1-data_cleaning.html#using-pygris-to-download-census-tract-geometries",
+    "title": "1.1 Data Collection and Cleaning Process",
+    "section": "Using Pygris to Download Census Tract Geometries",
+    "text": "Using Pygris to Download Census Tract Geometries\nNow, I utilize pygris to gather the census tract geometries across Philadelphia\n\n\nCode\nimport pygris\n\ntracts = pygris.tracts(state = \"PA\", county = \"Philadelphia\")\n\ntracts.plot()\n\ntracts.head()\n\n\n\nUsing the default year of 2021\nUsing FIPS code '42' for input 'PA'\nUsing FIPS code '101' for input 'Philadelphia'\n\n\n\n\n\n\n\n\n\nSTATEFP\nCOUNTYFP\nTRACTCE\nGEOID\nNAME\nNAMELSAD\nMTFCC\nFUNCSTAT\nALAND\nAWATER\nINTPTLAT\nINTPTLON\ngeometry\n\n\n\n\n68\n42\n101\n039100\n42101039100\n391\nCensus Tract 391\nG5020\nS\n1119799\n133239\n+39.9332720\n-075.2132103\nPOLYGON ((-75.22235 39.93105, -75.22129 39.931...\n\n\n69\n42\n101\n980902\n42101980902\n9809.02\nCensus Tract 9809.02\nG5020\nS\n132548\n50536\n+39.9346276\n-075.2046321\nPOLYGON ((-75.20684 39.93409, -75.20655 39.934...\n\n\n70\n42\n101\n980904\n42101980904\n9809.04\nCensus Tract 9809.04\nG5020\nS\n1570844\n158459\n+39.9247300\n-075.2036710\nPOLYGON ((-75.21243 39.92523, -75.21130 39.928...\n\n\n71\n42\n101\n980903\n42101980903\n9809.03\nCensus Tract 9809.03\nG5020\nS\n171154\n0\n+39.9347932\n-075.2009884\nPOLYGON ((-75.20422 39.93285, -75.20305 39.934...\n\n\n72\n42\n101\n980906\n42101980906\n9809.06\nCensus Tract 9809.06\nG5020\nS\n2945390\n383112\n+39.9095823\n-075.1984052\nPOLYGON ((-75.21612 39.90964, -75.21454 39.910...",
+    "crumbs": [
+      "Part 1: Black Latine vs White Latine Median Household Incomes",
+      "1.1 Data Collection and Cleaning Process"
+    ]
+  },
+  {
+    "objectID": "analysis/1-data_cleaning.html#merging-data-sets",
+    "href": "analysis/1-data_cleaning.html#merging-data-sets",
+    "title": "1.1 Data Collection and Cleaning Process",
+    "section": "Merging Data Sets",
+    "text": "Merging Data Sets\nNext, I\n\nMerge the census tract geometries with the census demographic dataframe on “TRACTCE”, making sure I merge left on the census dataset that none of my demographic data gets dropped\nEnsure that the resulting dataframe is a geodataframe, by calling “gpd.GeodataFrame”\nSave the GeoDataFrame into a file for usage in Part 2\n\n\n\nCode\nidentity_with_tracts= pd.merge(df,tracts, left_on=\"tract\", right_on=\"TRACTCE\", how='left')\n\nidentity_with_tracts=gpd.GeoDataFrame(identity_with_tracts, geometry='geometry')\nidentity_with_tracts.to_file(\"identity_with_tracts.geojson\")\n\n\nidentity_with_tracts.head()\n\n\n\n\n\n\n\n\n\nTotal Population\nMedian Household Income\nBlack and Latino/Hispanic\nBachelors Degree or Higher\nAssociates Degree\nMasters Degree\nWhite and Latino/Hispanic\nWhite Alone (Total)\nBlack or African American Alone\nHispanic or Latino Total\n...\nGEOID\nNAME\nNAMELSAD\nMTFCC\nFUNCSTAT\nALAND\nAWATER\nINTPTLAT\nINTPTLON\ngeometry\n\n\n\n\n0\n4098\n80470\n60\n1083\n177\n518\n475\n2864\n428\n785\n...\n42101002701\n27.01\nCensus Tract 27.01\nG5020\nS\n224842\n0\n+39.9285526\n-075.1537033\nPOLYGON ((-75.15600 39.92553, -75.15592 39.925...\n\n\n1\n4300\n76060\n0\n991\n338\n427\n117\n3680\n124\n325\n...\n42101002702\n27.02\nCensus Tract 27.02\nG5020\nS\n367675\n0\n+39.9280114\n-075.1495606\nPOLYGON ((-75.15285 39.92511, -75.15277 39.925...\n\n\n2\n4452\n65847\n18\n555\n404\n328\n499\n2119\n312\n1203\n...\n42101002801\n28.01\nCensus Tract 28.01\nG5020\nS\n222950\n0\n+39.9289729\n-075.1568319\nPOLYGON ((-75.15910 39.92593, -75.15902 39.926...\n\n\n3\n5772\n67585\n289\n1566\n91\n698\n289\n3718\n510\n685\n...\n42101002802\n28.02\nCensus Tract 28.02\nG5020\nS\n362691\n0\n+39.9288001\n-075.1614073\nPOLYGON ((-75.16707 39.92680, -75.16693 39.926...\n\n\n4\n3762\n66932\n35\n865\n80\n600\n290\n3018\n85\n544\n...\n42101002900\n29\nCensus Tract 29\nG5020\nS\n370256\n0\n+39.9306978\n-075.1655733\nPOLYGON ((-75.16949 39.92560, -75.16923 39.926...\n\n\n\n\n5 rows × 28 columns",
+    "crumbs": [
+      "Part 1: Black Latine vs White Latine Median Household Incomes",
+      "1.1 Data Collection and Cleaning Process"
+    ]
+  },
+  {
+    "objectID": "analysis/1-data_cleaning.html#cleaning-data-for-choropleth-map",
+    "href": "analysis/1-data_cleaning.html#cleaning-data-for-choropleth-map",
+    "title": "1.1 Data Collection and Cleaning Process",
+    "section": "Cleaning Data For Choropleth Map",
+    "text": "Cleaning Data For Choropleth Map\nFinally, I\n\nPrepare my date for the first Choropleth Map by creating a melting the data set into a tidy format with my variables of interest for the first part of the analysis (Black and Latino/Hispanic and White and Latino/Hispanic)\nClean the melted dataset to ensure the population column of interest is an int, and free of NAs, or other cluter\nSave the melted dataset into a file called “Melted_DF” for usage in part 1.2\n\n\n\nCode\nrace_columns = [\n   \n    'Black and Latino/Hispanic',\n    'White and Latino/Hispanic',\n   \n]\n\n\nid_vars = [\n    'tract', 'Total Population', 'Median Household Income',\n    'state', 'county', 'geometry'\n]\n\n\nmelted_df = pd.melt(\n    identity_with_tracts, \n    id_vars=id_vars, \n    value_vars=race_columns,  \n    var_name='Race/Ethnicity',  \n    value_name='Population' \n)\n\n\n\n\nmelted_df['Population'] = melted_df['Population'].str.replace(',', '', regex=False).fillna(0).astype(int)\n\n\n\nmelted_df.to_file(\"Melted_DF.geojson\")\n\n\nmelted_df.head()\n\n\n\n\n\n\n\n\n\n\ntract\nTotal Population\nMedian Household Income\nstate\ncounty\ngeometry\nRace/Ethnicity\nPopulation\n\n\n\n\n0\n002701\n4098\n80470\n42\n101\nPOLYGON ((-75.15600 39.92553, -75.15592 39.925...\nBlack and Latino/Hispanic\n60\n\n\n1\n002702\n4300\n76060\n42\n101\nPOLYGON ((-75.15285 39.92511, -75.15277 39.925...\nBlack and Latino/Hispanic\n0\n\n\n2\n002801\n4452\n65847\n42\n101\nPOLYGON ((-75.15910 39.92593, -75.15902 39.926...\nBlack and Latino/Hispanic\n18\n\n\n3\n002802\n5772\n67585\n42\n101\nPOLYGON ((-75.16707 39.92680, -75.16693 39.926...\nBlack and Latino/Hispanic\n289\n\n\n4\n002900\n3762\n66932\n42\n101\nPOLYGON ((-75.16949 39.92560, -75.16923 39.926...\nBlack and Latino/Hispanic\n35",
+    "crumbs": [
+      "Part 1: Black Latine vs White Latine Median Household Incomes",
+      "1.1 Data Collection and Cleaning Process"
+    ]
+  },
+  {
+    "objectID": "analysis_2/2.3.html#load-data-and-counting",
+    "href": "analysis_2/2.3.html#load-data-and-counting",
+    "title": "2.3 Statistical Analysis and Heatmap",
+    "section": "2.3.1 Load Data and Counting",
+    "text": "2.3.1 Load Data and Counting\nHere I’ll\n\nLoad the buildings per tract data frame from part 2.1\nGroup buildings by census tracts\nCreate a count column counting the college buildings per census tract.\n\n\n\nCode\ncollege_buildings = gpd.read_file(\"Universities_Colleges.geojson\")\ndemographics_with_tracts = gpd.read_file(\"identity_with_tracts.geojson\")\n\n\nif college_buildings.crs != demographics_with_tracts.crs:\n    demographics_with_tracts = demographics_with_tracts.to_crs(college_buildings.crs)\n\n\ncollege_buildings = college_buildings[college_buildings.is_valid]\ndemographics_with_tracts = demographics_with_tracts[demographics_with_tracts.is_valid]\n\n\n\n\n\nbuildings_per_tract = gpd.sjoin(\n    college_buildings,\n    demographics_with_tracts,\n    how=\"left\",         \n    predicate=\"within\"  \n)\n\n\n\n\nif 'NAME_left' in buildings_per_tract.columns:\n    count_col = 'NAME_left'\nelif 'BUILDING_ID' in buildings_per_tract.columns:\n    count_col = 'BUILDING_ID'  # Replace with actual building identifier\nelse:\n    # Choose the first non-NaN column as a fallback\n    count_col = buildings_per_tract.columns[0]\n\ncounts = (\n    buildings_per_tract\n    .groupby(\"tract\")[count_col]\n    .count()\n    .reset_index()\n)\n\ncounts.rename(columns={count_col: \"building_count\"}, inplace=True)\n\n\nall_tracts_df = demographics_with_tracts[[\n    'Total Population', 'Median Household Income',\n    'Black and Latino/Hispanic', 'Bachelors Degree or Higher',\n    'Associates Degree', 'Masters Degree', 'White and Latino/Hispanic',\n    'state', 'county', 'tract','geometry', 'White Alone (Total)', 'Black or African American Alone',\n    'Hispanic or Latino Total', 'Puerto Rican','Dominican',\n]].copy()\n\n\nall_tracts_df['tract'] = all_tracts_df['tract'].astype(str).str.strip()\ncounts['tract'] = counts['tract'].astype(str).str.strip()\n\n\nresult = all_tracts_df.merge(counts, on=\"tract\", how=\"left\")\n\n\nresult[\"building_count\"] = result[\"building_count\"].fillna(0).astype(int)\n\n\n\n\nbuilding_freq = result['building_count'].value_counts().sort_index().reset_index()\n\n\nbuilding_freq.columns = ['Building Count', 'Frequency']\n\n\n\n\nresult.head()\n\n\nbuilding_freq\n\n\n\n\n\n\n\n\n\n\n\nBuilding Count\nFrequency\n\n\n\n\n0\n0\n339\n\n\n1\n1\n24\n\n\n2\n2\n9\n\n\n3\n3\n7\n\n\n4\n4\n4\n\n\n5\n5\n1\n\n\n6\n6\n2\n\n\n7\n7\n3\n\n\n8\n8\n1\n\n\n9\n9\n1\n\n\n10\n10\n1\n\n\n11\n11\n2\n\n\n12\n12\n2\n\n\n13\n14\n1\n\n\n14\n15\n1\n\n\n15\n16\n1\n\n\n16\n17\n1\n\n\n17\n19\n1\n\n\n18\n23\n1\n\n\n19\n26\n1\n\n\n20\n34\n1\n\n\n21\n46\n1\n\n\n22\n51\n1\n\n\n23\n68\n1\n\n\n24\n93\n1",
+    "crumbs": [
+      "Part 2: Correlation Between Demographics and Post-Secondary Buildings Per Tract",
+      "2.3 Statistical Analysis and Heatmap"
+    ]
+  },
+  {
+    "objectID": "analysis_2/2.3.html#section",
+    "href": "analysis_2/2.3.html#section",
+    "title": "2.3 Statistical Analysis and Heatmap",
+    "section": "2.3.2",
+    "text": "2.3.2\nThere are a lot of census tracts across Philadelphia with 0 college buildings.\nTo mediate this I’m going to go ahead and turn the college count variable into a categorical variable because..\n\n\nCode\nnumeric_cols = [\n    \"Median Household Income\",\n    \"Bachelors Degree or Higher\",\n    \"Associates Degree\",\n    \"Masters Degree\",\n    \"White and Latino/Hispanic\",\n    \"Black and Latino/Hispanic\",\n    'White Alone (Total)', 'Black or African American Alone',\n    'Hispanic or Latino Total', 'Puerto Rican','Dominican'\n]\nfor col in numeric_cols:\n    result[col] = pd.to_numeric(result[col], errors='coerce')\n\n\ntracts_all_df = result.copy()\n\n\n\ndef categorize_building_count(count):\n    if count == 0:\n        return \"0\"\n    elif 1 &lt;= count &lt;= 4:\n        return str(count)\n    else:\n        return \"5+\"\n \n\ntracts_all_df[\"buildings_cat\"] = tracts_all_df[\"building_count\"].apply(categorize_building_count)",
+    "crumbs": [
+      "Part 2: Correlation Between Demographics and Post-Secondary Buildings Per Tract",
+      "2.3 Statistical Analysis and Heatmap"
+    ]
+  },
+  {
+    "objectID": "analysis_2/2.3.html#statistical-analysis-and-seaborn-heatmap",
+    "href": "analysis_2/2.3.html#statistical-analysis-and-seaborn-heatmap",
+    "title": "2.3 Statistical Analysis and Heatmap",
+    "section": "2.3.3 Statistical Analysis and Seaborn Heatmap",
+    "text": "2.3.3 Statistical Analysis and Seaborn Heatmap\nFinally, I’ll\n1) Compute the correlation, p-value, and standard errors of all of the  variables in my dataframe with each other \n2) Plot these correlations on a Seaborn heat map with an interactive tool tip that shows the  correlation, p-value, and\nstandard errors of every variable as it correlates with one another. \n\n\nCode\ncorr_numeric_cols = [\n    \"Median Household Income\",\n    \"Bachelors Degree or Higher\",\n    \"Associates Degree\",\n    \"Masters Degree\",\n    \"White and Latino/Hispanic\",\n    \"building_count\", \"Black and Latino/Hispanic\",\n    'White Alone (Total)', 'Black or African American Alone',\n    'Hispanic or Latino Total', 'Puerto Rican', 'Dominican',\n    \n]\n\n\nn = len(corr_numeric_cols)\ncorr_matrix = np.zeros((n, n))\npval_matrix = np.zeros((n, n))\nstderr_matrix = np.zeros((n, n)) \n\n\nfor i in range(n):\n    for j in range(n):\n        if i == j:\n            corr_matrix[i, j] = 1.0\n            pval_matrix[i, j] = 0.0\n            stderr_matrix[i, j] = 0.0\n        elif i &lt; j:\n            pair_df = tracts_all_df[[corr_numeric_cols[i], corr_numeric_cols[j]]].dropna()\n            if len(pair_df) &lt; 3:\n                corr_matrix[i, j] = np.nan\n                corr_matrix[j, i] = np.nan\n                pval_matrix[i, j] = np.nan\n                pval_matrix[j, i] = np.nan\n                stderr_matrix[i, j] = np.nan\n                stderr_matrix[j, i] = np.nan\n            else:\n                x = pair_df[corr_numeric_cols[i]]\n                y = pair_df[corr_numeric_cols[j]]\n                r, p = pearsonr(x, y)\n                \n                corr_matrix[i, j] = r\n                corr_matrix[j, i] = r\n                pval_matrix[i, j] = p\n                pval_matrix[j, i] = p\n                \n                n_pairs = len(pair_df)\n                \n                stderr = np.sqrt((1 - r**2) / (n_pairs - 2))\n                stderr_matrix[i, j] = stderr\n                stderr_matrix[j, i] = stderr\n\n\ncorr_df = pd.DataFrame(corr_matrix, columns=corr_numeric_cols, index=corr_numeric_cols)\npval_df = pd.DataFrame(pval_matrix, columns=corr_numeric_cols, index=corr_numeric_cols)\nstderr_df = pd.DataFrame(stderr_matrix, columns=corr_numeric_cols, index=corr_numeric_cols)\n\ncorr_df\n\n\n\n\n\n\n\n\n\nMedian Household Income\nBachelors Degree or Higher\nAssociates Degree\nMasters Degree\nWhite and Latino/Hispanic\nbuilding_count\nBlack and Latino/Hispanic\nWhite Alone (Total)\nBlack or African American Alone\nHispanic or Latino Total\nPuerto Rican\nDominican\n\n\n\n\nMedian Household Income\n1.000000\n0.607788\n0.008413\n0.592334\n-0.093035\n-0.102615\n-0.181440\n0.455367\n-0.339456\n-0.177877\n-0.198548\n-0.147122\n\n\nBachelors Degree or Higher\n0.607788\n1.000000\n0.196838\n0.769394\n-0.007511\n-0.099354\n-0.100238\n0.646284\n-0.234894\n-0.131714\n-0.183134\n-0.153682\n\n\nAssociates Degree\n0.008413\n0.196838\n1.000000\n0.041891\n0.255804\n-0.149500\n0.171220\n0.336991\n0.312803\n0.238996\n0.188198\n0.206839\n\n\nMasters Degree\n0.592334\n0.769394\n0.041891\n1.000000\n-0.113964\n-0.049006\n-0.117419\n0.509647\n-0.214572\n-0.201682\n-0.223810\n-0.187993\n\n\nWhite and Latino/Hispanic\n-0.093035\n-0.007511\n0.255804\n-0.113964\n1.000000\n-0.014201\n0.405201\n0.340753\n-0.118988\n0.887142\n0.823714\n0.637048\n\n\nbuilding_count\n-0.102615\n-0.099354\n-0.149500\n-0.049006\n-0.014201\n1.000000\n-0.073417\n0.061314\n-0.048240\n-0.054876\n-0.064609\n-0.047161\n\n\nBlack and Latino/Hispanic\n-0.181440\n-0.100238\n0.171220\n-0.117419\n0.405201\n-0.073417\n1.000000\n-0.035223\n0.230719\n0.559506\n0.548534\n0.450333\n\n\nWhite Alone (Total)\n0.455367\n0.646284\n0.336991\n0.509647\n0.340753\n0.061314\n-0.035223\n1.000000\n-0.496179\n0.158027\n0.095033\n0.072489\n\n\nBlack or African American Alone\n-0.339456\n-0.234894\n0.312803\n-0.214572\n-0.118988\n-0.048240\n0.230719\n-0.496179\n1.000000\n-0.041139\n-0.019901\n0.004637\n\n\nHispanic or Latino Total\n-0.177877\n-0.131714\n0.238996\n-0.201682\n0.887142\n-0.054876\n0.559506\n0.158027\n-0.041139\n1.000000\n0.951733\n0.766353\n\n\nPuerto Rican\n-0.198548\n-0.183134\n0.188198\n-0.223810\n0.823714\n-0.064609\n0.548534\n0.095033\n-0.019901\n0.951733\n1.000000\n0.652710\n\n\nDominican\n-0.147122\n-0.153682\n0.206839\n-0.187993\n0.637048\n-0.047161\n0.450333\n0.072489\n0.004637\n0.766353\n0.652710\n1.000000\n\n\n\n\n\n\n\n\n\nCode\ncorr_long = corr_df.stack().reset_index()\ncorr_long.columns = [\"Variable1\", \"Variable2\", \"Correlation\"]\n\npval_long = pval_df.stack().reset_index()\npval_long.columns = [\"Variable1\", \"Variable2\", \"p_value\"]\n\nstderr_long = stderr_df.stack().reset_index()\nstderr_long.columns = [\"Variable1\", \"Variable2\", \"std_err\"]\n\n\nmerged_long = (\n    corr_long\n    .merge(pval_long, on=[\"Variable1\", \"Variable2\"], how=\"left\")\n    .merge(stderr_long, on=[\"Variable1\", \"Variable2\"], how=\"left\")\n)\n\n\nheatmap = alt.Chart(merged_long).mark_rect().encode(\n    x=alt.X('Variable1:O', sort=sorted(merged_long[\"Variable1\"].unique())),\n    y=alt.Y('Variable2:O', sort=sorted(merged_long[\"Variable2\"].unique()), scale=alt.Scale(reverse=True)),\n    color=alt.Color('Correlation:Q',\n                    scale=alt.Scale(scheme='redblue', domain=(-1,1))),\n    tooltip=[\n        alt.Tooltip('Variable1:N'),\n        alt.Tooltip('Variable2:N'),\n        alt.Tooltip('Correlation:Q', format=\".3f\"),\n        alt.Tooltip('p_value:Q', format=\".3g\"),\n        alt.Tooltip('std_err:Q', format=\".3g\")\n    ]\n).properties(\n    width=450,\n    height=450,\n    title=\"Correlation Heatmap (Altair) with p-values & Std. Error\"\n)\n\n\nheatmap.display()",
+    "crumbs": [
+      "Part 2: Correlation Between Demographics and Post-Secondary Buildings Per Tract",
+      "2.3 Statistical Analysis and Heatmap"
+    ]
+  },
+  {
+    "objectID": "analysis_2/2.3.html#analysis",
+    "href": "analysis_2/2.3.html#analysis",
+    "title": "2.3 Statistical Analysis and Heatmap",
+    "section": "Analysis",
+    "text": "Analysis",
+    "crumbs": [
+      "Part 2: Correlation Between Demographics and Post-Secondary Buildings Per Tract",
+      "2.3 Statistical Analysis and Heatmap"
+    ]
+  },
+  {
+    "objectID": "analysis_2/index.html",
+    "href": "analysis_2/index.html",
+    "title": "Part 2: Correlation Between Demographics and Post-Secondary Buildings Per Tract",
     "section": "",
-    "text": "This page is generated from a Jupyter notebook and shows examples of embedding interactive maps produced using Folium.",
+    "text": "Part 2: Correlation Between Demographics and Post-Secondary Buildings Per Tract\n\n\nGoals of Part 2\nPart 2 is Dedicated to Answering the Following Research Question\n\nWhat is the correlation between living in the same tract as post-secondary school building(s) and post-secondary achievement rate (Associate and/or Bachelors Degree)\na) How does this vary across racial/ethnic demographics, \n and Median Household Income. \n\n\n\nWhat you’ll see in Part 2\n\nDownloading post-secondary building data geojson from OpenDataPhilly\nMerging building geojson with original “Identity_Per_Tract” dataframe from Part 1\nCreation of an interactive widget and panel that allows users to scroll through different census tracts, and analyze the demographics of each tract that contain 1 or more post-secondary building.\nStatistical analysis (Correlation Coefficient, Standard Error, & P-Value) of demographic variables and school buildings per census tract\nCreation of a correlation heatmap with hvplot with a touchtip that shows the correlation, standard error, and p-value between the relationships of all demographic variables and school buildings per tract/",
     "crumbs": [
-      "Analysis",
-      "Interactive Maps with Folium"
-    ]
-  },
-  {
-    "objectID": "analysis/4-folium.html#finding-the-shortest-route",
-    "href": "analysis/4-folium.html#finding-the-shortest-route",
-    "title": "Interactive Maps with Folium",
-    "section": "Finding the shortest route",
-    "text": "Finding the shortest route\nThis example finds the shortest route between the Art Musuem and the Liberty Bell using osmnx.\n\nimport osmnx as ox\n\nFirst, identify the lat/lng coordinates for our places of interest. Use osmnx to download the geometries for the Libery Bell and Art Museum.\n\nphilly_tourism = ox.features_from_place(\"Philadelphia, PA\", tags={\"tourism\": True})\n\n\nart_museum = philly_tourism.query(\"name == 'Philadelphia Museum of Art'\").squeeze()\n\nart_museum.geometry\n\n\n\n\n\n\n\n\n\nliberty_bell = philly_tourism.query(\"name == 'Liberty Bell'\").squeeze()\n\nliberty_bell.geometry\n\n\n\n\n\n\n\n\nNow, extract the lat and lng coordinates\nFor the Art Museum geometry, we can use the .geometry.centroid attribute to calculate the centroid of the building footprint.\n\nliberty_bell_x = liberty_bell.geometry.x\nliberty_bell_y = liberty_bell.geometry.y\n\n\nart_museum_x = art_museum.geometry.centroid.x\nart_museum_y = art_museum.geometry.centroid.y\n\nNext, use osmnx to download the street graph around Center City.\n\nG_cc = ox.graph_from_address(\n    \"City Hall, Philadelphia, USA\", dist=1500, network_type=\"drive\"\n)\n\nNext, identify the nodes in the graph closest to our points of interest.\n\n# Get the origin node (Liberty Bell)\norig_node = ox.nearest_nodes(G_cc, liberty_bell_x, liberty_bell_y)\n\n# Get the destination node (Art Musuem)\ndest_node = ox.nearest_nodes(G_cc, art_museum_x, art_museum_y)\n\nFind the shortest path, based on the distance of the edges:\n\n# Get the shortest path --&gt; just a list of node IDs\nroute = ox.shortest_path(G_cc, orig_node, dest_node, weight=\"length\")\n\nHow about an interactive version?\nosmnx has a helper function ox.utils_graph.route_to_gdf() to convert a route to a GeoDataFrame of edges.\n\nox.utils_graph.route_to_gdf(G_cc, route, weight=\"length\").explore(\n    tiles=\"cartodb positron\",\n    color=\"red\",\n)\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook",
-    "crumbs": [
-      "Analysis",
-      "Interactive Maps with Folium"
-    ]
-  },
-  {
-    "objectID": "analysis/4-folium.html#examining-trash-related-311-requests",
-    "href": "analysis/4-folium.html#examining-trash-related-311-requests",
-    "title": "Interactive Maps with Folium",
-    "section": "Examining Trash-Related 311 Requests",
-    "text": "Examining Trash-Related 311 Requests\nFirst, let’s load the dataset from a CSV file and convert to a GeoDataFrame:\n\n\nCode\n# Load the data from a CSV file into a pandas DataFrame\ntrash_requests_df = pd.read_csv(\n    \"https://raw.githubusercontent.com/MUSA-550-Fall-2023/week-4/main/data/trash_311_requests_2020.csv\"\n)\n\n# Remove rows with missing geometry\ntrash_requests_df = trash_requests_df.dropna(subset=[\"lat\", \"lon\"])\n\n\n# Create our GeoDataFrame with geometry column created from lon/lat\ntrash_requests = gpd.GeoDataFrame(\n    trash_requests_df,\n    geometry=gpd.points_from_xy(trash_requests_df[\"lon\"], trash_requests_df[\"lat\"]),\n    crs=\"EPSG:4326\",\n)\n\n\nLoad neighborhoods and do the spatial join to associate a neighborhood with each ticket:\n\n\nCode\n# Load the neighborhoods\nneighborhoods = gpd.read_file(\n    \"https://raw.githubusercontent.com/MUSA-550-Fall-2023/week-4/main/data/zillow_neighborhoods.geojson\"\n)\n\n# Do the spatial join to add the \"ZillowName\" column\nrequests_with_hood = gpd.sjoin(\n    trash_requests,\n    neighborhoods.to_crs(trash_requests.crs),\n    predicate=\"within\",\n)\n\n\nLet’s explore the 311 requests in the Greenwich neighborhood of the city:\n\n# Extract out the point tickets for Greenwich\ngreenwich_tickets = requests_with_hood.query(\"ZillowName == 'Greenwich'\")\n\n\n# Get the neighborhood boundary for Greenwich\ngreenwich_geo = neighborhoods.query(\"ZillowName == 'Greenwich'\")\n\ngreenwich_geo.squeeze().geometry\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nQuarto has callout blocks that you can use to emphasize content in different ways. This is a “Note” callout block. More info is available on the Quarto documentation.\n\n\nImport the packages we need:\n\nimport folium\nimport xyzservices\n\nCombine the tickets as markers and the neighborhood boundary on the same Folium map:\n\n# Plot the neighborhood boundary\nm = greenwich_geo.explore(\n    style_kwds={\"weight\": 4, \"color\": \"black\", \"fillColor\": \"none\"},\n    name=\"Neighborhood boundary\",\n    tiles=xyzservices.providers.CartoDB.Voyager,\n)\n\n\n# Add the individual tickets as circle markers and style them\ngreenwich_tickets.explore(\n    m=m,  # Add to the existing map!\n    marker_kwds={\"radius\": 7, \"fill\": True, \"color\": \"crimson\"},\n    marker_type=\"circle_marker\", # or 'marker' or 'circle'\n    name=\"Tickets\",\n)\n\n# Hse folium to add layer control\nfolium.LayerControl().add_to(m)\n\nm  # show map\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook",
-    "crumbs": [
-      "Analysis",
-      "Interactive Maps with Folium"
+      "Part 2: Correlation Between Demographics and Post-Secondary Buildings Per Tract"
     ]
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "MUSA 550: Final Project",
+    "title": "Latino & Afro-Latino Landscapes: Geospatial Data Science Revealing Disparities in Philadelphia",
     "section": "",
-    "text": "We can create beautiful websites that describe complex technical analyses in Python using Quarto and deploy them online using GitHub Pages. This combination of tools is a really powerful way to create and share your work. This website is a demo that is meant to be used to create your own Quarto website for the final project in MUSA 550.\nQuarto is a relatively new tool, but is becoming popular quickly. It’s a successor to the Rmarkdown ecosystem that combines functionality into a single tool and also extends its computation power to other languages. Most importantly for us, Quarto supports executing Python code, allowing us to convert Jupyter notebooks to HTML and share them online.\n\n\n\n\n\n\nImportant\n\n\n\nThis template site, including the layout it uses, is just a suggested place to start! For your final project, you’re welcome (and encouraged) to make as many changes as you like to best fit your project.",
-    "crumbs": [
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#welcome",
-    "href": "index.html#welcome",
-    "title": "MUSA 550: Final Project",
-    "section": "",
-    "text": "We can create beautiful websites that describe complex technical analyses in Python using Quarto and deploy them online using GitHub Pages. This combination of tools is a really powerful way to create and share your work. This website is a demo that is meant to be used to create your own Quarto website for the final project in MUSA 550.\nQuarto is a relatively new tool, but is becoming popular quickly. It’s a successor to the Rmarkdown ecosystem that combines functionality into a single tool and also extends its computation power to other languages. Most importantly for us, Quarto supports executing Python code, allowing us to convert Jupyter notebooks to HTML and share them online.\n\n\n\n\n\n\nImportant\n\n\n\nThis template site, including the layout it uses, is just a suggested place to start! For your final project, you’re welcome (and encouraged) to make as many changes as you like to best fit your project.",
+    "text": "About this Project\nThis project, titled “Analyzing Educational and Socioeconomic Disparities for Latino and Afro-Latino Communities in Philadelphia Through Geospatial Analysis,” employs advanced geospatial techniques to examine the role of geography in shaping access to educational opportunities and socioeconomic outcomes. By visualizing and analyzing key datasets, this research aims to highlight systemic barriers and inform equitable solutions for underrepresented communities in Philadelphia.\n\n\nAdditional Information\nIn addition to the primary analysis, this project incorporates community feedback and stakeholder interviews to provide a comprehensive understanding of the challenges faced by Latino and Afro-Latino populations in the region. The findings are expected to contribute to policy recommendations that promote inclusivity and equal opportunities in education and economic development.\n\n\nResearch Questions\n\nWhat are the differences in Median Household Income of tracts that contain more Black and Latino/Hispanics in comparison to White and Latino/Hispanic?\nWhat is the correlation between living in the same tract as post-secondary school building(s) and post-secondary achievement rate (Associate and/or Bachelors Degree)",
     "crumbs": [
       "Welcome"
     ]

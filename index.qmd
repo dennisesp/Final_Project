@@ -1,8 +1,41 @@
 ---
-title: "MUSA 550: Final Project "
-subtitle: "Analyzing Educational and Socioeconomic Disparities for Latino and Afro-Latino Communities in Philadelphia Through Geospatial Analysis"
+title: "Latino & Afro-Latino Landscapes: Geospatial Data Science Revealing Disparities in Philadelphia"
+subtitle: "Dennis Espejo || MUSA 550 Geospatial Data Science in Python"
 ---
 
-## Welcome!
+<div class="text-box">
 
-This project, titled "Analyzing Educational and Socioeconomic Disparities for Latino and Afro-Latino Communities in Philadelphia Through Geospatial Analysis," employs advanced geospatial techniques to examine the role of geography in shaping access to educational opportunities and socioeconomic outcomes. By visualizing and analyzing key datasets, this research aims to highlight systemic barriers and inform equitable solutions for underrepresented communities in Philadelphia.
+**About this Project**
+
+This project, titled "Analyzing Educational and Socioeconomic Disparities 
+for Latino and Afro-Latino Communities in Philadelphia Through Geospatial Analysis," 
+employs advanced geospatial techniques to examine the role of geography in shaping 
+access to educational opportunities and socioeconomic outcomes. 
+By visualizing and analyzing key datasets, this research aims to 
+highlight systemic barriers and inform equitable solutions for underrepresented communities in Philadelphia.
+
+</div>
+
+
+<div class="text-box">
+
+**Additional Information**
+
+In addition to the primary analysis, this project incorporates community feedback 
+and stakeholder interviews to provide a comprehensive understanding of the 
+challenges faced by Latino and Afro-Latino populations in the region. 
+The findings are expected to contribute to policy recommendations 
+that promote inclusivity and equal opportunities in education and economic development.
+
+</div>
+
+<div class="text-box">
+**Research Questions**
+
+1) What are the differences in Median Household Income of tracts that contain more Black and Latino/Hispanics
+in comparison to White and Latino/Hispanic? 
+
+
+2) What is the correlation between living in the same tract as post-secondary school building(s) and post-secondary achievement rate (Associate and/or Bachelors Degree) 
+
+</div>

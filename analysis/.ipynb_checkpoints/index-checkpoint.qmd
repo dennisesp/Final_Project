@@ -1,0 +1,33 @@
+<div class="text-box">
+# Part 1: Black Latine vs White Latine Median Household Incomes
+</div>
+
+<div class="text-box">
+**Goals of Part 1**
+
+Part 1 is Dedicated to Answering the Following Research Question 
+
+1) What are the differences in Median Household Income of tracts that contain more Black and Latino/Hispanics
+in comparison to White and Latino/Hispanic? 
+
+</div>
+
+<div class="text-box">
+
+**What you'll see in Part 1**
+
+1) Collection of Philadelphia's Demographic Data Per Census Tract through the Census API
+
+2) Downloading Philadelphia's shapefiles 
+
+3) Merging shapefiles with census demographic information 
+
+4) Cleaning and Mapping Demographic Data per Race/Ethnicity on a Hvplot Choropleth Map 
+
+5) Testing Choropleth Observations with an Altair Barplot comparing Median Household Income
+of predominant White Latine vs Black Latine census tracts. 
+
+</div>
+
+
+
