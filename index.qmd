@@ -18,14 +18,22 @@ highlight systemic barriers and inform equitable solutions for underrepresented 
 
 
 <div class="text-box">
+**Project Requirements Satisfied**
 
-**Additional Information**
 
-In addition to the primary analysis, this project incorporates community feedback 
-and stakeholder interviews to provide a comprehensive understanding of the 
-challenges faced by Latino and Afro-Latino populations in the region. 
-The findings are expected to contribute to policy recommendations 
-that promote inclusivity and equal opportunities in education and economic development.
+1) "Data is collected through a means more sophisticated than downloading (e.g. scraping, API)."
+    a) Demographic data is collected using the census API
+    b) Census tract geometries are loaded using pygris
+
+2) "Combines data collected from 3 or more different sources."
+    a) Pygris, Census API, and college building data from open data Philly 
+   
+3) "Includes multiple interactive visualizations that include a significant interactive
+component (cross-filtering, interactive widgets, etc)"
+    a) Project has two interactive choropleth maps using hvplot and folium, as well as a seaborn correlation heatmap with a tooltip. 
+  
+
+
 
 </div>
 

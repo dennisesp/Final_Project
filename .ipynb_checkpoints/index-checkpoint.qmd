@@ -1,8 +1,49 @@
 ---
-title: "MUSA 550: Final Project "
-subtitle: "Analyzing Educational and Socioeconomic Disparities for Latino and Afro-Latino Communities in Philadelphia Through Geospatial Analysis"
+title: "Latino & Afro-Latino Landscapes: Geospatial Data Science Revealing Disparities in Philadelphia"
+subtitle: "Dennis Espejo || MUSA 550 Geospatial Data Science in Python"
 ---
 
-## Welcome!
+<div class="text-box">
 
-This project, titled "Analyzing Educational and Socioeconomic Disparities for Latino and Afro-Latino Communities in Philadelphia Through Geospatial Analysis," employs advanced geospatial techniques to examine the role of geography in shaping access to educational opportunities and socioeconomic outcomes. By visualizing and analyzing key datasets, this research aims to highlight systemic barriers and inform equitable solutions for underrepresented communities in Philadelphia.
+**About this Project**
+
+This project, titled "Analyzing Educational and Socioeconomic Disparities 
+for Latino and Afro-Latino Communities in Philadelphia Through Geospatial Analysis," 
+employs advanced geospatial techniques to examine the role of geography in shaping 
+access to educational opportunities and socioeconomic outcomes. 
+By visualizing and analyzing key datasets, this research aims to 
+highlight systemic barriers and inform equitable solutions for underrepresented communities in Philadelphia.
+
+</div>
+
+
+<div class="text-box">
+**Project Requirements Satisfied**
+
+
+1) "Data is collected through a means more sophisticated than downloading (e.g. scraping, API)."
+    a) Demographic data is collected using the census API
+    b) Census tract geometries are loaded using pygris
+
+2) "Combines data collected from 3 or more different sources."
+    a) Pygris, Census API, and college building data from open data Philly 
+   
+3) "Includes multiple interactive visualizations that include a significant interactive
+component (cross-filtering, interactive widgets, etc)"
+    a) Project has two interactive choropleth maps using hvplot and folium, as well as a seaborn correlation heatmap with a tooltip. 
+  
+
+
+
+</div>
+
+<div class="text-box">
+**Research Questions**
+
+1) What are the differences in Median Household Income of tracts that contain more Black and Latino/Hispanics
+in comparison to White and Latino/Hispanic? 
+
+
+2) What is the correlation between living in the same tract as post-secondary school building(s) and post-secondary achievement rate (Associate and/or Bachelors Degree) 
+
+</div>

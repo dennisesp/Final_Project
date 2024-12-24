@@ -213,8 +213,22 @@ ul.task-list li input[type="checkbox"] {
 <p>This project, titled “Analyzing Educational and Socioeconomic Disparities for Latino and Afro-Latino Communities in Philadelphia Through Geospatial Analysis,” employs advanced geospatial techniques to examine the role of geography in shaping access to educational opportunities and socioeconomic outcomes. By visualizing and analyzing key datasets, this research aims to highlight systemic barriers and inform equitable solutions for underrepresented communities in Philadelphia.</p>
 </div>
 <div class="text-box">
-<p><strong>Additional Information</strong></p>
-<p>In addition to the primary analysis, this project incorporates community feedback and stakeholder interviews to provide a comprehensive understanding of the challenges faced by Latino and Afro-Latino populations in the region. The findings are expected to contribute to policy recommendations that promote inclusivity and equal opportunities in education and economic development.</p>
+<p><strong>Project Requirements Satisfied</strong></p>
+<ol type="1">
+<li>“Data is collected through a means more sophisticated than downloading (e.g.&nbsp;scraping, API).”
+<ol type="a">
+<li>Demographic data is collected using the census API</li>
+<li>Census tract geometries are loaded using pygris</li>
+</ol></li>
+<li>“Combines data collected from 3 or more different sources.”
+<ol type="a">
+<li>Pygris, Census API, and college building data from open data Philly</li>
+</ol></li>
+<li>“Includes multiple interactive visualizations that include a significant interactive component (cross-filtering, interactive widgets, etc)”
+<ol type="a">
+<li>Project has two interactive choropleth maps using hvplot and folium, as well as a seaborn correlation heatmap with a tooltip.</li>
+</ol></li>
+</ol>
 </div>
 <div class="text-box">
 <p><strong>Research Questions</strong></p>

@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -199,27 +233,77 @@ ul.task-list li input[type="checkbox"] {
 <div class="text-box">
 <p><strong>Bar Plot Comparing Black/Latino vs White/Latino Predominate Census Tracts</strong></p>
 <p>Below I’m including a bar plot that demonstraes the comparison of the Mean Median Household Incomes of Black/Latino vs White/Latino Census Tracts using Altair</p>
-<div id="8358108b-abec-4108-9adb-d8322ab2c4dc" class="cell" data-tags="[]" data-execution_count="3">
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div id="8358108b-abec-4108-9adb-d8322ab2c4dc" class="cell" data-tags="[]" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>white_greater_df <span class="op">=</span> identity_with_tracts[identity_with_tracts[<span class="st">"White and Latino/Hispanic"</span>] <span class="op">&gt;</span> identity_with_tracts[<span class="st">"Black and Latino/Hispanic"</span>]]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>black_greater_df <span class="op">=</span> identity_with_tracts[identity_with_tracts[<span class="st">"Black and Latino/Hispanic"</span>] <span class="op">&gt;</span> identity_with_tracts[<span class="st">"White and Latino/Hispanic"</span>]]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>median_white_greater <span class="op">=</span> white_greater_df[<span class="st">"Median Household Income"</span>].mean()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>median_black_greater <span class="op">=</span> black_greater_df[<span class="st">"Median Household Income"</span>].mean()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Tract Group'</span>: [</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Tracts where White Latino &gt; Black Latino"</span>, </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Tracts where Black Latino &gt; White Latino"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Median Household Income'</span>: [</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        median_white_greater, </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        median_black_greater</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>chart <span class="op">=</span> (</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    alt.Chart(data)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    .mark_bar()</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    .encode(</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>alt.X(<span class="st">'Tract Group:N'</span>, title<span class="op">=</span><span class="st">''</span>, sort<span class="op">=</span><span class="va">None</span>),</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>alt.Y(<span class="st">'Median Household Income:Q'</span>, title<span class="op">=</span><span class="st">'Median Household Income'</span>),</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        tooltip<span class="op">=</span>[</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>            alt.Tooltip(<span class="st">'Tract Group:N'</span>, title<span class="op">=</span><span class="st">'Tract Group'</span>),</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>            alt.Tooltip(<span class="st">'Median Household Income:Q'</span>, <span class="bu">format</span><span class="op">=</span><span class="st">',.0f'</span>, title<span class="op">=</span><span class="st">'Mean of Median Household Incomes'</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>alt.Color(</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Tract Group:N'</span>, </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>            scale<span class="op">=</span>alt.Scale(</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                domain<span class="op">=</span>[</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Tracts where White Latino &gt; Black Latino"</span>, </span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Tracts where Black Latino &gt; White Latino"</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>                ],</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>                <span class="bu">range</span><span class="op">=</span>[<span class="st">"orange"</span>, <span class="st">"red"</span>]</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>            legend<span class="op">=</span><span class="va">None</span>  </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    .properties(</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">"Comparing Means of Median Household Income"</span>,</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        width<span class="op">=</span><span class="dv">400</span>,</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        height<span class="op">=</span><span class="dv">300</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>chart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="4">
 
 <style>
-  #altair-viz-2c53899ae6654a84b90d7905efb0cc91.vega-embed {
+  #altair-viz-b8de09a1c61b4c3299f51c53fd36bb84.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-2c53899ae6654a84b90d7905efb0cc91.vega-embed details,
-  #altair-viz-2c53899ae6654a84b90d7905efb0cc91.vega-embed details summary {
+  #altair-viz-b8de09a1c61b4c3299f51c53fd36bb84.vega-embed details,
+  #altair-viz-b8de09a1c61b4c3299f51c53fd36bb84.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-2c53899ae6654a84b90d7905efb0cc91"></div>
+<div id="altair-viz-b8de09a1c61b4c3299f51c53fd36bb84"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-2c53899ae6654a84b90d7905efb0cc91") {
-      outputDiv = document.getElementById("altair-viz-2c53899ae6654a84b90d7905efb0cc91");
+    if (outputDiv.id !== "altair-viz-b8de09a1c61b4c3299f51c53fd36bb84") {
+      outputDiv = document.getElementById("altair-viz-b8de09a1c61b4c3299f51c53fd36bb84");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
