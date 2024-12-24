@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>quarto-inputf9da5fa000446a3 – MUSA 550</title>
+<title>quarto-input6ef87fd03d9faee6 – MUSA 550</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -235,16 +235,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Clean the data frame contaning columns that I want for the analysis</p></li>
 <li><p>Export the cleaned dataframe for use in part 2.2</p></li>
 </ol>
-<div id="56babcb2-7147-44fa-a2c2-8396615f0516" class="cell" data-tags="[]" data-execution_count="2">
+<div id="56babcb2-7147-44fa-a2c2-8396615f0516" class="cell" data-tags="[]" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>college_buildings<span class="op">=</span>gpd.read_file(<span class="st">"Universities_Colleges.geojson"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>demographics_with_tracts<span class="op">=</span> gpd.read_file(<span class="st">"identity_with_tracts.geojson"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>identity_with_tracts<span class="op">=</span> gpd.read_file(<span class="st">"identity_with_tracts.geojson"</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>buildings_with_tract <span class="op">=</span> gpd.sjoin(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>buildings_per_tract <span class="op">=</span> gpd.sjoin(</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    college_buildings,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    demographics_with_tracts.to_crs(college_buildings.crs),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    identity_with_tracts.to_crs(college_buildings.crs),</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">'left'</span>,</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    predicate<span class="op">=</span><span class="st">"within"</span>,</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -260,15 +260,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Total Population'</span>, <span class="st">'Median Household Income'</span>, </span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Bachelors Degree or Higher'</span>,  <span class="st">'Associates Degree'</span>,</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Masters Degree'</span>, <span class="st">'White and Latino/Hispanic'</span>,</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>       <span class="st">'tract'</span>]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>       <span class="st">'tract'</span>, <span class="st">'Hispanic or Latino Total'</span>]</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>buildings_with_tract_clean <span class="op">=</span> buildings_with_tract[columns_to_keep]</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>buildings_per_tract_clean <span class="op">=</span> buildings_per_tract[columns_to_keep]</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>buildings_with_tract_clean.to_file(<span class="st">"buildings_per_tract.geojson"</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>buildings_per_tract_clean.to_file(<span class="st">"buildings_per_tract.geojson"</span>)</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>buildings_with_tract_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>buildings_per_tract_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
@@ -288,6 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">Masters Degree</th>
 <th data-quarto-table-cell-role="th">White and Latino/Hispanic</th>
 <th data-quarto-table-cell-role="th">tract</th>
+<th data-quarto-table-cell-role="th">Hispanic or Latino Total</th>
 </tr>
 </thead>
 <tbody>
@@ -305,6 +306,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>56</td>
 <td>0</td>
 <td>017100</td>
+<td>191</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
@@ -320,6 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>206</td>
 <td>73</td>
 <td>000403</td>
+<td>73</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
@@ -335,6 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>126</td>
 <td>106</td>
 <td>000200</td>
+<td>268</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
@@ -350,6 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>126</td>
 <td>106</td>
 <td>000200</td>
+<td>268</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
@@ -365,9 +370,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0</td>
 <td>825</td>
 <td>016300</td>
+<td>2483</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
 <td>...</td>
 <td>...</td>
 <td>...</td>
@@ -395,6 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>506</td>
 <td>83</td>
 <td>037500</td>
+<td>195</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">625</td>
@@ -410,6 +418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>241</td>
 <td>53</td>
 <td>012000</td>
+<td>81</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">626</td>
@@ -425,6 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>506</td>
 <td>83</td>
 <td>037500</td>
+<td>195</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">627</td>
@@ -440,6 +450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>345</td>
 <td>184</td>
 <td>001203</td>
+<td>224</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">628</td>
@@ -455,11 +466,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>345</td>
 <td>184</td>
 <td>001203</td>
+<td>224</td>
 </tr>
 </tbody>
 </table>
 
-<p>629 rows × 12 columns</p>
+<p>629 rows × 13 columns</p>
 </div>
 </div>
 </div>
