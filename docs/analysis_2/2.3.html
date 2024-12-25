@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>quarto-inputa58214507f0e755b – MUSA 550</title>
+<title>quarto-inputf6e7866cbb3c281c – MUSA 550</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -229,6 +229,553 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="statistical-analysis-and-heatmap" class="level1 text-box">
 <h1>2.3 Statistical Analysis and Heatmap</h1>
 </section>
+<div id="d782cbab-208c-40a9-b4a6-3e8343fdaccd" class="cell" data-tags="[]" data-execution_count="1">
+<div class="cell-output cell-output-stdout">
+<pre><code>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/javascript">
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+  var py_version = '3.2.1'.replace('rc', '-rc.').replace('.dev', '-dev.');
+  var is_dev = py_version.indexOf("+") !== -1 || py_version.indexOf("-") !== -1;
+  var reloading = false;
+  var Bokeh = root.Bokeh;
+  var bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks;
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, js_modules, js_exports, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+    if (js_modules == null) js_modules = [];
+    if (js_exports == null) js_exports = {};
+
+    root._bokeh_onload_callbacks.push(callback);
+
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls.length === 0 && js_modules.length === 0 && Object.keys(js_exports).length === 0) {
+      run_callbacks();
+      return null;
+    }
+    if (!reloading) {
+      console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    }
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+    window._bokeh_on_load = on_load
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      window.requirejs.config({'packages': {}, 'paths': {'jspanel': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/jspanel', 'jspanel-modal': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal', 'jspanel-tooltip': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip', 'jspanel-hint': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint', 'jspanel-layout': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout', 'jspanel-contextmenu': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu', 'jspanel-dock': 'https://cdn.jsdelivr.net/npm/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock', 'gridstack': 'https://cdn.jsdelivr.net/npm/gridstack@7.2.3/dist/gridstack-all', 'notyf': 'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min'}, 'shim': {'jspanel': {'exports': 'jsPanel'}, 'gridstack': {'exports': 'GridStack'}}});
+      require(["jspanel"], function(jsPanel) {
+    window.jsPanel = jsPanel
+    on_load()
+      })
+      require(["jspanel-modal"], function() {
+    on_load()
+      })
+      require(["jspanel-tooltip"], function() {
+    on_load()
+      })
+      require(["jspanel-hint"], function() {
+    on_load()
+      })
+      require(["jspanel-layout"], function() {
+    on_load()
+      })
+      require(["jspanel-contextmenu"], function() {
+    on_load()
+      })
+      require(["jspanel-dock"], function() {
+    on_load()
+      })
+      require(["gridstack"], function(GridStack) {
+    window.GridStack = GridStack
+    on_load()
+      })
+      require(["notyf"], function() {
+    on_load()
+      })
+      root._bokeh_is_loading = css_urls.length + 9;
+    } else {
+      root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length + Object.keys(js_exports).length;
+    }
+
+    var existing_stylesheets = []
+    var links = document.getElementsByTagName('link')
+    for (var i = 0; i < links.length; i++) {
+      var link = links[i]
+      if (link.href != null) {
+    existing_stylesheets.push(link.href)
+      }
+    }
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      if (existing_stylesheets.indexOf(url) !== -1) {
+    on_load()
+    continue;
+      }
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }    if (((window['jsPanel'] !== undefined) && (!(window['jsPanel'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.1/dist/bundled/floatpanel/jspanel4@4.12.0/dist/jspanel.js', 'https://cdn.holoviz.org/panel/1.2.1/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/modal/jspanel.modal.js', 'https://cdn.holoviz.org/panel/1.2.1/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/tooltip/jspanel.tooltip.js', 'https://cdn.holoviz.org/panel/1.2.1/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/hint/jspanel.hint.js', 'https://cdn.holoviz.org/panel/1.2.1/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/layout/jspanel.layout.js', 'https://cdn.holoviz.org/panel/1.2.1/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/contextmenu/jspanel.contextmenu.js', 'https://cdn.holoviz.org/panel/1.2.1/dist/bundled/floatpanel/jspanel4@4.12.0/dist/extensions/dock/jspanel.dock.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }    if (((window['GridStack'] !== undefined) && (!(window['GridStack'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.1/dist/bundled/gridstack/gridstack@7.2.3/dist/gridstack-all.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }    if (((window['Notyf'] !== undefined) && (!(window['Notyf'] instanceof HTMLElement))) || window.requirejs) {
+      var urls = ['https://cdn.holoviz.org/panel/1.2.1/dist/bundled/notificationarea/notyf@3/notyf.min.js'];
+      for (var i = 0; i < urls.length; i++) {
+        skip.push(urls[i])
+      }
+    }    var existing_scripts = []
+    var scripts = document.getElementsByTagName('script')
+    for (var i = 0; i < scripts.length; i++) {
+      var script = scripts[i]
+      if (script.src != null) {
+    existing_scripts.push(script.src)
+      }
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
+    if (!window.requirejs) {
+      on_load();
+    }
+    continue;
+      }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+    for (var i = 0; i < js_modules.length; i++) {
+      var url = js_modules[i];
+      if (skip.indexOf(url) !== -1 || existing_scripts.indexOf(url) !== -1) {
+    if (!window.requirejs) {
+      on_load();
+    }
+    continue;
+      }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      element.type = "module";
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+    for (const name in js_exports) {
+      var url = js_exports[name];
+      if (skip.indexOf(url) >= 0 || root[name] != null) {
+    if (!window.requirejs) {
+      on_load();
+    }
+    continue;
+      }
+      var element = document.createElement('script');
+      element.onerror = on_error;
+      element.async = false;
+      element.type = "module";
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      element.textContent = `
+      import ${name} from "${url}"
+      window.${name} = ${name}
+      window._bokeh_on_load()
+      `
+      document.head.appendChild(element);
+    }
+    if (!js_urls.length && !js_modules.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.2.1.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.2.1.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.2.1.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.2.1.min.js", "https://cdn.holoviz.org/panel/1.2.1/dist/panel.min.js"];
+  var js_modules = [];
+  var js_exports = {};
+  var css_urls = [];
+  var inline_js = [    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }
+      // Cache old bokeh versions
+      if (Bokeh != undefined && !reloading) {
+    var NewBokeh = root.Bokeh;
+    if (Bokeh.versions === undefined) {
+      Bokeh.versions = new Map();
+    }
+    if (NewBokeh.version !== Bokeh.version) {
+      Bokeh.versions.set(NewBokeh.version, NewBokeh)
+    }
+    root.Bokeh = Bokeh;
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+    root._bokeh_is_initializing = false
+  }
+
+  function load_or_wait() {
+    // Implement a backoff loop that tries to ensure we do not load multiple
+    // versions of Bokeh and its dependencies at the same time.
+    // In recent versions we use the root._bokeh_is_initializing flag
+    // to determine whether there is an ongoing attempt to initialize
+    // bokeh, however for backward compatibility we also try to ensure
+    // that we do not start loading a newer (Panel>=1.0 and Bokeh>3) version
+    // before older versions are fully initialized.
+    if (root._bokeh_is_initializing && Date.now() > root._bokeh_timeout) {
+      root._bokeh_is_initializing = false;
+      root._bokeh_onload_callbacks = undefined;
+      console.log("Bokeh: BokehJS was loaded multiple times but one version failed to initialize.");
+      load_or_wait();
+    } else if (root._bokeh_is_initializing || (typeof root._bokeh_is_initializing === "undefined" && root._bokeh_onload_callbacks !== undefined)) {
+      setTimeout(load_or_wait, 100);
+    } else {
+      Bokeh = root.Bokeh;
+      bokeh_loaded = Bokeh != null && (Bokeh.version === py_version || (Bokeh.versions !== undefined && Bokeh.versions.has(py_version)));
+      root._bokeh_is_initializing = true
+      root._bokeh_onload_callbacks = []
+      if (!reloading && (!bokeh_loaded || is_dev)) {
+    root.Bokeh = undefined;
+      }
+      load_libs(css_urls, js_urls, js_modules, js_exports, function() {
+    console.debug("Bokeh: BokehJS plotting callback run at", now());
+    run_inline_js();
+      });
+    }
+  }
+  // Give older versions of the autoload script a head-start to ensure
+  // they initialize before we start loading newer version.
+  setTimeout(load_or_wait, 100)
+}(window));
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/javascript">
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<style>*[data-root-id],
+*[data-root-id] > * {
+  box-sizing: border-box;
+  font-family: var(--jp-ui-font-family);
+  font-size: var(--jp-ui-font-size1);
+  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
+}
+
+/* Override VSCode background color */
+.cell-output-ipywidget-background:has(
+    > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
+  ),
+.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
+  background-color: transparent !important;
+}
+</style>
+</div>
+</div>
 <section id="load-data-and-counting" class="level2 text-box">
 <h2 class="anchored" data-anchor-id="load-data-and-counting">2.3.1 Load Data and Counting</h2>
 <p>Here I’ll</p>
@@ -237,89 +784,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Group buildings by census tracts</p></li>
 <li><p>Create a count column counting the college buildings per census tract.</p></li>
 </ol>
-<div id="7982a4ad-2bd4-4504-9d85-d76e28b2046e" class="cell" data-tags="[]" data-execution_count="4">
+<div id="7982a4ad-2bd4-4504-9d85-d76e28b2046e" class="cell" data-tags="[]" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>college_buildings <span class="op">=</span> gpd.read_file(<span class="st">"Universities_Colleges.geojson"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>demographics_with_tracts <span class="op">=</span> gpd.read_file(<span class="st">"identity_with_tracts.geojson"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> college_buildings.crs <span class="op">!=</span> demographics_with_tracts.crs:</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    demographics_with_tracts <span class="op">=</span> demographics_with_tracts.to_crs(college_buildings.crs)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>college_buildings <span class="op">=</span> college_buildings[college_buildings.is_valid]</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>demographics_with_tracts <span class="op">=</span> demographics_with_tracts[demographics_with_tracts.is_valid]</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>buildings_per_tract <span class="op">=</span> gpd.sjoin(</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    college_buildings,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    demographics_with_tracts,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">"left"</span>,         </span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    predicate<span class="op">=</span><span class="st">"within"</span>  </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'NAME_left'</span> <span class="kw">in</span> buildings_per_tract.columns:</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    count_col <span class="op">=</span> <span class="st">'NAME_left'</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="st">'BUILDING_ID'</span> <span class="kw">in</span> buildings_per_tract.columns:</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    count_col <span class="op">=</span> <span class="st">'BUILDING_ID'</span>  <span class="co"># Replace with actual building identifier</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Choose the first non-NaN column as a fallback</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    count_col <span class="op">=</span> buildings_per_tract.columns[<span class="dv">0</span>]</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> (</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    buildings_per_tract</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    .groupby(<span class="st">"tract"</span>)[count_col]</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    .count()</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    .reset_index()</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>counts.rename(columns<span class="op">=</span>{count_col: <span class="st">"building_count"</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>all_tracts_df <span class="op">=</span> demographics_with_tracts[[</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Total Population'</span>, <span class="st">'Median Household Income'</span>,</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Black and Latino/Hispanic'</span>, <span class="st">'Bachelors Degree or Higher'</span>,</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Associates Degree'</span>, <span class="st">'Masters Degree'</span>, <span class="st">'White and Latino/Hispanic'</span>,</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="st">'state'</span>, <span class="st">'county'</span>, <span class="st">'tract'</span>,<span class="st">'geometry'</span>, <span class="st">'White Alone (Total)'</span>, <span class="st">'Black or African American Alone'</span>,</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Hispanic or Latino Total'</span>, <span class="st">'Puerto Rican'</span>,<span class="st">'Dominican'</span>,</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>]].copy()</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>all_tracts_df[<span class="st">'tract'</span>] <span class="op">=</span> all_tracts_df[<span class="st">'tract'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.strip()</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>counts[<span class="st">'tract'</span>] <span class="op">=</span> counts[<span class="st">'tract'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.strip()</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> all_tracts_df.merge(counts, on<span class="op">=</span><span class="st">"tract"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>result[<span class="st">"building_count"</span>] <span class="op">=</span> result[<span class="st">"building_count"</span>].fillna(<span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>building_freq <span class="op">=</span> result[<span class="st">'building_count'</span>].value_counts().sort_index().reset_index()</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>building_freq.columns <span class="op">=</span> [<span class="st">'Building Count'</span>, <span class="st">'Frequency'</span>]</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>result.head()</span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>college_buildings <span class="op">=</span> gpd.read_file(<span class="st">"Universities_Colleges.geojson"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>demographics_with_tracts <span class="op">=</span> gpd.read_file(<span class="st">"identity_with_tracts.geojson"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> college_buildings.crs <span class="op">!=</span> demographics_with_tracts.crs:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    demographics_with_tracts <span class="op">=</span> demographics_with_tracts.to_crs(college_buildings.crs)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>college_buildings <span class="op">=</span> college_buildings[college_buildings.is_valid]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>demographics_with_tracts <span class="op">=</span> demographics_with_tracts[demographics_with_tracts.is_valid]</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>buildings_per_tract <span class="op">=</span> gpd.sjoin(</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    college_buildings,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    demographics_with_tracts,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">"left"</span>,         </span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    predicate<span class="op">=</span><span class="st">"within"</span>  </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'NAME_left'</span> <span class="kw">in</span> buildings_per_tract.columns:</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    count_col <span class="op">=</span> <span class="st">'NAME_left'</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="st">'BUILDING_ID'</span> <span class="kw">in</span> buildings_per_tract.columns:</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    count_col <span class="op">=</span> <span class="st">'BUILDING_ID'</span>  <span class="co"># Replace with actual building identifier</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Choose the first non-NaN column as a fallback</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    count_col <span class="op">=</span> buildings_per_tract.columns[<span class="dv">0</span>]</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> (</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    buildings_per_tract</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    .groupby(<span class="st">"tract"</span>)[count_col]</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    .count()</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    .reset_index()</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>counts.rename(columns<span class="op">=</span>{count_col: <span class="st">"building_count"</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>all_tracts_df <span class="op">=</span> demographics_with_tracts[[</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Total Population'</span>, <span class="st">'Median Household Income'</span>,</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Black and Latino/Hispanic'</span>, <span class="st">'Bachelors Degree or Higher'</span>,</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Associates Degree'</span>, <span class="st">'Masters Degree'</span>, <span class="st">'White and Latino/Hispanic'</span>,</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="st">'state'</span>, <span class="st">'county'</span>, <span class="st">'tract'</span>,<span class="st">'geometry'</span>, <span class="st">'White Alone (Total)'</span>, <span class="st">'Black or African American Alone'</span>,</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Hispanic or Latino Total'</span>, <span class="st">'Puerto Rican'</span>,<span class="st">'Dominican'</span>,</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>]].copy()</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>all_tracts_df[<span class="st">'tract'</span>] <span class="op">=</span> all_tracts_df[<span class="st">'tract'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.strip()</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>counts[<span class="st">'tract'</span>] <span class="op">=</span> counts[<span class="st">'tract'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.strip()</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> all_tracts_df.merge(counts, on<span class="op">=</span><span class="st">"tract"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>result[<span class="st">"building_count"</span>] <span class="op">=</span> result[<span class="st">"building_count"</span>].fillna(<span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>building_freq <span class="op">=</span> result[<span class="st">'building_count'</span>].value_counts().sort_index().reset_index()</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>building_freq.columns <span class="op">=</span> [<span class="st">'Building Count'</span>, <span class="st">'Frequency'</span>]</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>result.head()</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -454,262 +1001,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="section" class="level2 text-box">
+<div class="text-box">
+<section id="section" class="level2">
 <h2 class="anchored" data-anchor-id="section">2.3.2</h2>
 <p>There are a lot of census tracts across Philadelphia with 0 college buildings.</p>
 <p>To address this, I will transform the college count variable into a categorical variable, distinguishing between census tracts that have one or more college buildings and those that have none. This approach will facilitate a clearer analysis of the relationship between the presence of college buildings and other variables of interest within each census tract.</p>
-<div id="ba0c3eac-3e12-48b2-98e3-9e38202fd4a7" class="cell" data-tags="[]" data-execution_count="11">
+<div id="ba0c3eac-3e12-48b2-98e3-9e38202fd4a7" class="cell" data-tags="[]" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> [</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Median Household Income"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Bachelors Degree or Higher"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Associates Degree"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Masters Degree"</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"White and Latino/Hispanic"</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Black and Latino/Hispanic"</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'White Alone (Total)'</span>, <span class="st">'Black or African American Alone'</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Hispanic or Latino Total'</span>, <span class="st">'Puerto Rican'</span>,<span class="st">'Dominican'</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> numeric_cols:</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    result[col] <span class="op">=</span> pd.to_numeric(result[col], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>tracts_all_df <span class="op">=</span> result.copy()</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> categorize_building_count(count):</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> count <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>tracts_all_df[<span class="st">"buildings_cat"</span>] <span class="op">=</span> tracts_all_df[<span class="st">"building_count"</span>].<span class="bu">apply</span>(categorize_building_count)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> [</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Median Household Income"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Bachelors Degree or Higher"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Associates Degree"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"White and Latino/Hispanic"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Black and Latino/Hispanic"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> numeric_cols:</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    result[col] <span class="op">=</span> pd.to_numeric(result[col], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>tracts_all_df <span class="op">=</span> result.copy()</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> categorize_building_count(count):</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> count <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>tracts_all_df[<span class="st">"buildings_cat"</span>] <span class="op">=</span> tracts_all_df[<span class="st">"building_count"</span>].<span class="bu">apply</span>(categorize_building_count)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>white_greater_df <span class="op">=</span> tracts_all_df[tracts_all_df[<span class="st">"White and Latino/Hispanic"</span>] <span class="op">&gt;</span> tracts_all_df[<span class="st">"Black and Latino/Hispanic"</span>]]</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>black_greater_df <span class="op">=</span> tracts_all_df[tracts_all_df[<span class="st">"Black and Latino/Hispanic"</span>] <span class="op">&gt;</span> tracts_all_df[<span class="st">"White and Latino/Hispanic"</span>]]</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="statistical-analysis-and-seaborn-heatmap" class="level2 text-box">
-<h2 class="anchored" data-anchor-id="statistical-analysis-and-seaborn-heatmap">2.3.3 Statistical Analysis and Seaborn Heatmap</h2>
-<p>Finally, I’ll</p>
-<pre><code>1) Compute the correlation, p-value, and standard errors of all of the  variables in my dataframe with each other 
-2) Plot these correlations on a Seaborn heat map with an interactive tool tip that shows the  correlation, p-value, and
-standard errors of every variable as it correlates with one another. </code></pre>
-<div id="b46885a9-f870-4633-82ae-50ecd1de73c2" class="cell" data-tags="[]" data-execution_count="15">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>corr_numeric_cols <span class="op">=</span> [</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Median Household Income"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Bachelors Degree or Higher"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Associates Degree"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"buildings_cat"</span>, <span class="st">"Black and Latino/Hispanic"</span>,<span class="st">"White and Latino/Hispanic"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Hispanic or Latino Total'</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(corr_numeric_cols)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>corr_matrix <span class="op">=</span> np.zeros((n, n))</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>pval_matrix <span class="op">=</span> np.zeros((n, n))</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>stderr_matrix <span class="op">=</span> np.zeros((n, n)) </span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">==</span> j:</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>            corr_matrix[i, j] <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>            pval_matrix[i, j] <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>            stderr_matrix[i, j] <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> i <span class="op">&lt;</span> j:</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>            pair_df <span class="op">=</span> tracts_all_df[[corr_numeric_cols[i], corr_numeric_cols[j]]].dropna()</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(pair_df) <span class="op">&lt;</span> <span class="dv">3</span>:</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                corr_matrix[i, j] <span class="op">=</span> np.nan</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                corr_matrix[j, i] <span class="op">=</span> np.nan</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                pval_matrix[i, j] <span class="op">=</span> np.nan</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>                pval_matrix[j, i] <span class="op">=</span> np.nan</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>                stderr_matrix[i, j] <span class="op">=</span> np.nan</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                stderr_matrix[j, i] <span class="op">=</span> np.nan</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>                x <span class="op">=</span> pair_df[corr_numeric_cols[i]]</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>                y <span class="op">=</span> pair_df[corr_numeric_cols[j]]</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>                r, p <span class="op">=</span> pearsonr(x, y)</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>                </span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>                corr_matrix[i, j] <span class="op">=</span> r</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>                corr_matrix[j, i] <span class="op">=</span> r</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>                pval_matrix[i, j] <span class="op">=</span> p</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>                pval_matrix[j, i] <span class="op">=</span> p</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>                </span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>                n_pairs <span class="op">=</span> <span class="bu">len</span>(pair_df)</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>                </span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>                stderr <span class="op">=</span> np.sqrt((<span class="dv">1</span> <span class="op">-</span> r<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (n_pairs <span class="op">-</span> <span class="dv">2</span>))</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>                stderr_matrix[i, j] <span class="op">=</span> stderr</span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>                stderr_matrix[j, i] <span class="op">=</span> stderr</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>corr_df <span class="op">=</span> pd.DataFrame(corr_matrix, columns<span class="op">=</span>corr_numeric_cols, index<span class="op">=</span>corr_numeric_cols)</span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>pval_df <span class="op">=</span> pd.DataFrame(pval_matrix, columns<span class="op">=</span>corr_numeric_cols, index<span class="op">=</span>corr_numeric_cols)</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>stderr_df <span class="op">=</span> pd.DataFrame(stderr_matrix, columns<span class="op">=</span>corr_numeric_cols, index<span class="op">=</span>corr_numeric_cols)</span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>corr_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="15">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Median Household Income</th>
-<th data-quarto-table-cell-role="th">Bachelors Degree or Higher</th>
-<th data-quarto-table-cell-role="th">Associates Degree</th>
-<th data-quarto-table-cell-role="th">buildings_cat</th>
-<th data-quarto-table-cell-role="th">Black and Latino/Hispanic</th>
-<th data-quarto-table-cell-role="th">White and Latino/Hispanic</th>
-<th data-quarto-table-cell-role="th">Hispanic or Latino Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Median Household Income</td>
-<td>1.000000</td>
-<td>0.607788</td>
-<td>0.008413</td>
-<td>0.079966</td>
-<td>-0.181440</td>
-<td>-0.093035</td>
-<td>-0.177877</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Bachelors Degree or Higher</td>
-<td>0.607788</td>
-<td>1.000000</td>
-<td>0.196838</td>
-<td>0.000716</td>
-<td>-0.100238</td>
-<td>-0.007511</td>
-<td>-0.131714</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Associates Degree</td>
-<td>0.008413</td>
-<td>0.196838</td>
-<td>1.000000</td>
-<td>-0.191563</td>
-<td>0.171220</td>
-<td>0.255804</td>
-<td>0.238996</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">buildings_cat</td>
-<td>0.079966</td>
-<td>0.000716</td>
-<td>-0.191563</td>
-<td>1.000000</td>
-<td>-0.159477</td>
-<td>-0.127220</td>
-<td>-0.150066</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Black and Latino/Hispanic</td>
-<td>-0.181440</td>
-<td>-0.100238</td>
-<td>0.171220</td>
-<td>-0.159477</td>
-<td>1.000000</td>
-<td>0.405201</td>
-<td>0.559506</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">White and Latino/Hispanic</td>
-<td>-0.093035</td>
-<td>-0.007511</td>
-<td>0.255804</td>
-<td>-0.127220</td>
-<td>0.405201</td>
-<td>1.000000</td>
-<td>0.887142</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Hispanic or Latino Total</td>
-<td>-0.177877</td>
-<td>-0.131714</td>
-<td>0.238996</td>
-<td>-0.150066</td>
-<td>0.559506</td>
-<td>0.887142</td>
-<td>1.000000</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<div id="be78007e-e267-455c-b147-dab70e6f4546" class="cell" data-execution_count="16">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>corr_long <span class="op">=</span> corr_df.stack().reset_index()</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>corr_long.columns <span class="op">=</span> [<span class="st">"Variable1"</span>, <span class="st">"Variable2"</span>, <span class="st">"Correlation"</span>]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>pval_long <span class="op">=</span> pval_df.stack().reset_index()</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>pval_long.columns <span class="op">=</span> [<span class="st">"Variable1"</span>, <span class="st">"Variable2"</span>, <span class="st">"p_value"</span>]</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>stderr_long <span class="op">=</span> stderr_df.stack().reset_index()</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>stderr_long.columns <span class="op">=</span> [<span class="st">"Variable1"</span>, <span class="st">"Variable2"</span>, <span class="st">"std_err"</span>]</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>merged_long <span class="op">=</span> (</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    corr_long</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    .merge(pval_long, on<span class="op">=</span>[<span class="st">"Variable1"</span>, <span class="st">"Variable2"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    .merge(stderr_long, on<span class="op">=</span>[<span class="st">"Variable1"</span>, <span class="st">"Variable2"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>heatmap <span class="op">=</span> alt.Chart(merged_long).mark_rect().encode(</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'Variable1:O'</span>, sort<span class="op">=</span><span class="bu">sorted</span>(merged_long[<span class="st">"Variable1"</span>].unique())),</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'Variable2:O'</span>, sort<span class="op">=</span><span class="bu">sorted</span>(merged_long[<span class="st">"Variable2"</span>].unique()), scale<span class="op">=</span>alt.Scale(reverse<span class="op">=</span><span class="va">True</span>)),</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(<span class="st">'Correlation:Q'</span>,</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>                    scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">'redblue'</span>, domain<span class="op">=</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))),</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    tooltip<span class="op">=</span>[</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">'Variable1:N'</span>),</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">'Variable2:N'</span>),</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">'Correlation:Q'</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3f"</span>),</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">'p_value:Q'</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3g"</span>),</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">'std_err:Q'</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3g"</span>)</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>).properties(</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">450</span>,</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">450</span>,</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Correlation Heatmap (Altair) with p-values &amp; Std. Error"</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>heatmap.display()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
+<section id="bar-graphs-of-means" class="level2">
+<h2 class="anchored" data-anchor-id="bar-graphs-of-means">2.3.3 Bar Graphs Of Means</h2>
+<div id="5f3fbf68-e7ef-417c-b635-a028c9da9ed1" class="cell" data-tags="[]" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="5">
 
 <style>
-  #altair-viz-b202a5e3f53a428eb3dc590ff5acb305.vega-embed {
+  #altair-viz-51395f3e2d9743aebd7fecf75c70f6de.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-b202a5e3f53a428eb3dc590ff5acb305.vega-embed details,
-  #altair-viz-b202a5e3f53a428eb3dc590ff5acb305.vega-embed details summary {
+  #altair-viz-51395f3e2d9743aebd7fecf75c70f6de.vega-embed details,
+  #altair-viz-51395f3e2d9743aebd7fecf75c70f6de.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-b202a5e3f53a428eb3dc590ff5acb305"></div>
+<div id="altair-viz-51395f3e2d9743aebd7fecf75c70f6de"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-b202a5e3f53a428eb3dc590ff5acb305") {
-      outputDiv = document.getElementById("altair-viz-b202a5e3f53a428eb3dc590ff5acb305");
+    if (outputDiv.id !== "altair-viz-51395f3e2d9743aebd7fecf75c70f6de") {
+      outputDiv = document.getElementById("altair-viz-51395f3e2d9743aebd7fecf75c70f6de");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -755,19 +1113,182 @@ standard errors of every variable as it correlates with one another. </code></pr
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-7fbd51a95c452963ad90a71d5a787acc"}, "mark": {"type": "rect"}, "encoding": {"color": {"field": "Correlation", "scale": {"domain": [-1, 1], "scheme": "redblue"}, "type": "quantitative"}, "tooltip": [{"field": "Variable1", "type": "nominal"}, {"field": "Variable2", "type": "nominal"}, {"field": "Correlation", "format": ".3f", "type": "quantitative"}, {"field": "p_value", "format": ".3g", "type": "quantitative"}, {"field": "std_err", "format": ".3g", "type": "quantitative"}], "x": {"field": "Variable1", "sort": ["Associates Degree", "Bachelors Degree or Higher", "Black and Latino/Hispanic", "Hispanic or Latino Total", "Median Household Income", "White and Latino/Hispanic", "buildings_cat"], "type": "ordinal"}, "y": {"field": "Variable2", "scale": {"reverse": true}, "sort": ["Associates Degree", "Bachelors Degree or Higher", "Black and Latino/Hispanic", "Hispanic or Latino Total", "Median Household Income", "White and Latino/Hispanic", "buildings_cat"], "type": "ordinal"}}, "height": 450, "title": "Correlation Heatmap (Altair) with p-values & Std. Error", "width": 450, "$schema": "https://vega.github.io/schema/vega-lite/v5.14.1.json", "datasets": {"data-7fbd51a95c452963ad90a71d5a787acc": [{"Variable1": "Median Household Income", "Variable2": "Median Household Income", "Correlation": 1.0, "p_value": 0.0, "std_err": 0.0}, {"Variable1": "Median Household Income", "Variable2": "Bachelors Degree or Higher", "Correlation": 0.6077877127860252, "p_value": 1.4490686156520417e-42, "std_err": 0.03941049896956869}, {"Variable1": "Median Household Income", "Variable2": "Associates Degree", "Correlation": 0.008413347491275758, "p_value": 0.865464013226572, "std_err": 0.04962741018167158}, {"Variable1": "Median Household Income", "Variable2": "buildings_cat", "Correlation": 0.07996609878828351, "p_value": 0.10677402756961127, "std_err": 0.049470233450497836}, {"Variable1": "Median Household Income", "Variable2": "Black and Latino/Hispanic", "Correlation": -0.18144013602728531, "p_value": 0.00022933936047725694, "std_err": 0.04880542137167751}, {"Variable1": "Median Household Income", "Variable2": "White and Latino/Hispanic", "Correlation": -0.09303536032706732, "p_value": 0.06044541756829452, "std_err": 0.04941391533655982}, {"Variable1": "Median Household Income", "Variable2": "Hispanic or Latino Total", "Correlation": -0.17787745646861833, "p_value": 0.0003053002934909033, "std_err": 0.04883771281807862}, {"Variable1": "Bachelors Degree or Higher", "Variable2": "Median Household Income", "Correlation": 0.6077877127860252, "p_value": 1.4490686156520417e-42, "std_err": 0.03941049896956869}, {"Variable1": "Bachelors Degree or Higher", "Variable2": "Bachelors Degree or Higher", "Correlation": 1.0, "p_value": 0.0, "std_err": 0.0}, {"Variable1": "Bachelors Degree or Higher", "Variable2": "Associates Degree", "Correlation": 0.19683752508001073, "p_value": 6.255648590730964e-05, "std_err": 0.04865822772077745}, {"Variable1": "Bachelors Degree or Higher", "Variable2": "buildings_cat", "Correlation": 0.0007159362484917692, "p_value": 0.9884974264463365, "std_err": 0.049629153979465115}, {"Variable1": "Bachelors Degree or Higher", "Variable2": "Black and Latino/Hispanic", "Correlation": -0.10023826661215687, "p_value": 0.043011225229420615, "std_err": 0.04937920749439841}, {"Variable1": "Bachelors Degree or Higher", "Variable2": "White and Latino/Hispanic", "Correlation": -0.007511202204822841, "p_value": 0.8797741713929725, "std_err": 0.04962776668570166}, {"Variable1": "Bachelors Degree or Higher", "Variable2": "Hispanic or Latino Total", "Correlation": -0.13171394528365243, "p_value": 0.007723040720770622, "std_err": 0.04919678582500954}, {"Variable1": "Associates Degree", "Variable2": "Median Household Income", "Correlation": 0.008413347491275758, "p_value": 0.865464013226572, "std_err": 0.04962741018167158}, {"Variable1": "Associates Degree", "Variable2": "Bachelors Degree or Higher", "Correlation": 0.19683752508001073, "p_value": 6.255648590730964e-05, "std_err": 0.04865822772077745}, {"Variable1": "Associates Degree", "Variable2": "Associates Degree", "Correlation": 1.0, "p_value": 0.0, "std_err": 0.0}, {"Variable1": "Associates Degree", "Variable2": "buildings_cat", "Correlation": -0.19156324486498272, "p_value": 9.875341385852919e-05, "std_err": 0.04871004800239942}, {"Variable1": "Associates Degree", "Variable2": "Black and Latino/Hispanic", "Correlation": 0.1712203362256787, "p_value": 0.0005136122243934112, "std_err": 0.048896281010996315}, {"Variable1": "Associates Degree", "Variable2": "White and Latino/Hispanic", "Correlation": 0.2558042201259771, "p_value": 1.6184319350665335e-07, "std_err": 0.04797793522431456}, {"Variable1": "Associates Degree", "Variable2": "Hispanic or Latino Total", "Correlation": 0.2389956631358905, "p_value": 1.0415846871286244e-06, "std_err": 0.04819094494697479}, {"Variable1": "buildings_cat", "Variable2": "Median Household Income", "Correlation": 0.07996609878828351, "p_value": 0.10677402756961127, "std_err": 0.049470233450497836}, {"Variable1": "buildings_cat", "Variable2": "Bachelors Degree or Higher", "Correlation": 0.0007159362484917692, "p_value": 0.9884974264463365, "std_err": 0.049629153979465115}, {"Variable1": "buildings_cat", "Variable2": "Associates Degree", "Correlation": -0.19156324486498272, "p_value": 9.875341385852919e-05, "std_err": 0.04871004800239942}, {"Variable1": "buildings_cat", "Variable2": "buildings_cat", "Correlation": 1.0, "p_value": 0.0, "std_err": 0.0}, {"Variable1": "buildings_cat", "Variable2": "Black and Latino/Hispanic", "Correlation": -0.15947715361850312, "p_value": 0.0012288109583557623, "std_err": 0.04899399373748903}, {"Variable1": "buildings_cat", "Variable2": "White and Latino/Hispanic", "Correlation": -0.12721985979712552, "p_value": 0.01010279480569332, "std_err": 0.0492259069941034}, {"Variable1": "buildings_cat", "Variable2": "Hispanic or Latino Total", "Correlation": -0.15006591770285632, "p_value": 0.002372778529057905, "std_err": 0.04906716569780409}, {"Variable1": "Black and Latino/Hispanic", "Variable2": "Median Household Income", "Correlation": -0.18144013602728531, "p_value": 0.00022933936047725694, "std_err": 0.04880542137167751}, {"Variable1": "Black and Latino/Hispanic", "Variable2": "Bachelors Degree or Higher", "Correlation": -0.10023826661215687, "p_value": 0.043011225229420615, "std_err": 0.04937920749439841}, {"Variable1": "Black and Latino/Hispanic", "Variable2": "Associates Degree", "Correlation": 0.1712203362256787, "p_value": 0.0005136122243934112, "std_err": 0.048896281010996315}, {"Variable1": "Black and Latino/Hispanic", "Variable2": "buildings_cat", "Correlation": -0.15947715361850312, "p_value": 0.0012288109583557623, "std_err": 0.04899399373748903}, {"Variable1": "Black and Latino/Hispanic", "Variable2": "Black and Latino/Hispanic", "Correlation": 1.0, "p_value": 0.0, "std_err": 0.0}, {"Variable1": "Black and Latino/Hispanic", "Variable2": "White and Latino/Hispanic", "Correlation": 0.40520085859396837, "p_value": 1.4878300096335082e-17, "std_err": 0.04537235829259162}, {"Variable1": "Black and Latino/Hispanic", "Variable2": "Hispanic or Latino Total", "Correlation": 0.5595057830055479, "p_value": 5.540148300979755e-35, "std_err": 0.04113396588845624}, {"Variable1": "White and Latino/Hispanic", "Variable2": "Median Household Income", "Correlation": -0.09303536032706732, "p_value": 0.06044541756829452, "std_err": 0.04941391533655982}, {"Variable1": "White and Latino/Hispanic", "Variable2": "Bachelors Degree or Higher", "Correlation": -0.007511202204822841, "p_value": 0.8797741713929725, "std_err": 0.04962776668570166}, {"Variable1": "White and Latino/Hispanic", "Variable2": "Associates Degree", "Correlation": 0.2558042201259771, "p_value": 1.6184319350665335e-07, "std_err": 0.04797793522431456}, {"Variable1": "White and Latino/Hispanic", "Variable2": "buildings_cat", "Correlation": -0.12721985979712552, "p_value": 0.01010279480569332, "std_err": 0.0492259069941034}, {"Variable1": "White and Latino/Hispanic", "Variable2": "Black and Latino/Hispanic", "Correlation": 0.40520085859396837, "p_value": 1.4878300096335082e-17, "std_err": 0.04537235829259162}, {"Variable1": "White and Latino/Hispanic", "Variable2": "White and Latino/Hispanic", "Correlation": 1.0, "p_value": 0.0, "std_err": 0.0}, {"Variable1": "White and Latino/Hispanic", "Variable2": "Hispanic or Latino Total", "Correlation": 0.8871420409640398, "p_value": 2.0021453068787847e-138, "std_err": 0.022903685634644812}, {"Variable1": "Hispanic or Latino Total", "Variable2": "Median Household Income", "Correlation": -0.17787745646861833, "p_value": 0.0003053002934909033, "std_err": 0.04883771281807862}, {"Variable1": "Hispanic or Latino Total", "Variable2": "Bachelors Degree or Higher", "Correlation": -0.13171394528365243, "p_value": 0.007723040720770622, "std_err": 0.04919678582500954}, {"Variable1": "Hispanic or Latino Total", "Variable2": "Associates Degree", "Correlation": 0.2389956631358905, "p_value": 1.0415846871286244e-06, "std_err": 0.04819094494697479}, {"Variable1": "Hispanic or Latino Total", "Variable2": "buildings_cat", "Correlation": -0.15006591770285632, "p_value": 0.002372778529057905, "std_err": 0.04906716569780409}, {"Variable1": "Hispanic or Latino Total", "Variable2": "Black and Latino/Hispanic", "Correlation": 0.5595057830055479, "p_value": 5.540148300979755e-35, "std_err": 0.04113396588845624}, {"Variable1": "Hispanic or Latino Total", "Variable2": "White and Latino/Hispanic", "Correlation": 0.8871420409640398, "p_value": 2.0021453068787847e-138, "std_err": 0.022903685634644812}, {"Variable1": "Hispanic or Latino Total", "Variable2": "Hispanic or Latino Total", "Correlation": 1.0, "p_value": 0.0, "std_err": 0.0}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "hconcat": [{"layer": [{"mark": {"type": "bar"}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "name": "view_2", "title": "Mean Socioeconomic Variables by Building Category (White Latino > Black Latino)"}, {"mark": {"type": "text", "align": "center", "baseline": "bottom", "dy": -5}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "text": {"field": "Mean", "format": ".0f", "type": "quantitative"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "title": "Mean Socioeconomic Variables by Building Category (White Latino > Black Latino)"}], "data": {"name": "data-32dbd6a221b414f440a044f18500dce0"}, "height": 400, "width": 300}, {"layer": [{"mark": {"type": "bar"}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "name": "view_3", "title": "Mean Socioeconomic Variables by Building Category (Black Latino > White Latino)"}, {"mark": {"type": "text", "align": "center", "baseline": "bottom", "dy": -5}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "text": {"field": "Mean", "format": ".0f", "type": "quantitative"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "title": "Mean Socioeconomic Variables by Building Category (Black Latino > White Latino)"}], "data": {"name": "data-52a9b5543818b9854ef9db77a7912730"}, "height": 400, "width": 300}, {"layer": [{"mark": {"type": "bar"}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "name": "view_1", "title": "Mean Socioeconomic Variables by Building Category Entire Philadelphia"}, {"mark": {"type": "text", "align": "center", "baseline": "bottom", "dy": -5}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "text": {"field": "Mean", "format": ".0f", "type": "quantitative"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "title": "Mean Socioeconomic Variables by Building Category Entire Philadelphia"}], "data": {"name": "data-90890cb3c763f7d16611291bdf38c5bd"}, "height": 400, "width": 300}], "params": [{"name": "param_2", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales", "views": ["view_2"]}, {"name": "param_3", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales", "views": ["view_3"]}, {"name": "param_1", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales", "views": ["view_1"]}], "resolve": {"scale": {"y": "shared"}}, "$schema": "https://vega.github.io/schema/vega-lite/v5.14.1.json", "datasets": {"data-32dbd6a221b414f440a044f18500dce0": [{"Building Category": "No Buildings", "Variable": "Median Household Income", "Mean": 57212.885714285716}, {"Building Category": "Has Buildings", "Variable": "Median Household Income", "Mean": 62932.07272727273}, {"Building Category": "No Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 547.6979591836734}, {"Building Category": "Has Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 522.9090909090909}, {"Building Category": "No Buildings", "Variable": "Associates Degree", "Mean": 181.18775510204082}, {"Building Category": "Has Buildings", "Variable": "Associates Degree", "Mean": 95.32727272727273}], "data-52a9b5543818b9854ef9db77a7912730": [{"Building Category": "No Buildings", "Variable": "Median Household Income", "Mean": 38381.34482758621}, {"Building Category": "Has Buildings", "Variable": "Median Household Income", "Mean": 38981.2}, {"Building Category": "No Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 359.1896551724138}, {"Building Category": "Has Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 383.4}, {"Building Category": "No Buildings", "Variable": "Associates Degree", "Mean": 182.0344827586207}, {"Building Category": "Has Buildings", "Variable": "Associates Degree", "Mean": 170.2}], "data-90890cb3c763f7d16611291bdf38c5bd": [{"Building Category": "No Buildings", "Variable": "Median Household Income", "Mean": 50101.84365781711}, {"Building Category": "Has Buildings", "Variable": "Median Household Income", "Mean": 56598.79710144927}, {"Building Category": "No Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 475.86725663716817}, {"Building Category": "Has Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 476.5507246376812}, {"Building Category": "No Buildings", "Variable": "Associates Degree", "Mean": 169.89675516224187}, {"Building Category": "Has Buildings", "Variable": "Associates Degree", "Mean": 105.5072463768116}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 </div>
 </section>
-<section id="analysis" class="level2 text-box">
-<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<section id="analysis-1" class="level2 text-box">
+<h2 class="anchored" data-anchor-id="analysis-1">Analysis 1</h2>
+<p>Based on the provided bar charts, there appears to be no significant difference across the three demographic variables—Bachelor’s Degree or Higher, Associate’s Degree, and Median Household Income—in relation to the presence of post-secondary buildings within the census tracts.</p>
+<p>However, as seen in section 1.3, the socioeconomic status of Black Latine-predominant tracts is lower than both the overall Philadelphia average and White Latine tracts. Moreover, within census tracts with a predominantly smaller Black Latine population, there is a lower number of individuals who have completed a Bachelor’s degree, but a higher number who have completed an Associate’s degree.</p>
+<p>Additionally, census tracts with a higher population of White Latines compared to Black Latines exhibit higher median household incomes and a greater number of individuals holding a Bachelor’s degree. This indicates that areas with more White Latines may have better economic opportunities and higher educational attainment levels.</p>
+<p>To conclude, I intend to provide a correlation heatmap to examine whether the trends observed in the above bar charts are statistically correlated. This will help ensure that the relationships between educational attainment, household income, and the presence of post-secondary buildings are not coincidental but are indeed interrelated factors influencing the socioeconomic status of different demographic groups within Philadelphia.</p>
+</section>
+</div>
+<section id="statistical-analysis-and-seaborn-heatmap" class="level2 text-box">
+<h2 class="anchored" data-anchor-id="statistical-analysis-and-seaborn-heatmap">2.3.4 Statistical Analysis and Seaborn Heatmap</h2>
+<p>Finally, I’ll</p>
+<pre><code>1) Compute the correlation, p-value, and standard errors of Associates Degree, Bachelors Degree, Presence of Building in Tract, and Median Household Income for the entireity of Philadelphia 
+2) Plot these correlations on a Seaborn heat map with an interactive tool tip that shows the  correlation, p-value, and standard errors of each variable as it correlates with one another. 
+3) Repeat the previous two steps for tracts that have larger White-Latine populations and tracks that have larger Black Latine populations</code></pre>
+<div id="fdc5109c-0d95-4eb1-8569-ac58012ccc74" class="cell" data-tags="[]" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Median Household Income</th>
+<th data-quarto-table-cell-role="th">Bachelors Degree or Higher</th>
+<th data-quarto-table-cell-role="th">Associates Degree</th>
+<th data-quarto-table-cell-role="th">buildings_cat</th>
+<th data-quarto-table-cell-role="th">White and Latino/Hispanic</th>
+<th data-quarto-table-cell-role="th">Black and Latino/Hispanic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Median Household Income</td>
+<td>1.000000</td>
+<td>0.607788</td>
+<td>0.008413</td>
+<td>0.079966</td>
+<td>-0.093035</td>
+<td>-0.181440</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Bachelors Degree or Higher</td>
+<td>0.607788</td>
+<td>1.000000</td>
+<td>0.196838</td>
+<td>0.000716</td>
+<td>-0.007511</td>
+<td>-0.100238</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Associates Degree</td>
+<td>0.008413</td>
+<td>0.196838</td>
+<td>1.000000</td>
+<td>-0.191563</td>
+<td>0.255804</td>
+<td>0.171220</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">buildings_cat</td>
+<td>0.079966</td>
+<td>0.000716</td>
+<td>-0.191563</td>
+<td>1.000000</td>
+<td>-0.127220</td>
+<td>-0.159477</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">White and Latino/Hispanic</td>
+<td>-0.093035</td>
+<td>-0.007511</td>
+<td>0.255804</td>
+<td>-0.127220</td>
+<td>1.000000</td>
+<td>0.405201</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Black and Latino/Hispanic</td>
+<td>-0.181440</td>
+<td>-0.100238</td>
+<td>0.171220</td>
+<td>-0.159477</td>
+<td>0.405201</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="a4b2db6b-88f1-47c1-acba-0c2b22938b06" class="cell" data-tags="[]" data-execution_count="7">
+<div class="cell-output cell-output-display">
+
+<style>
+  #altair-viz-8b6c2e5d5eb34e96bf51aabb0010e9de.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-8b6c2e5d5eb34e96bf51aabb0010e9de.vega-embed details,
+  #altair-viz-8b6c2e5d5eb34e96bf51aabb0010e9de.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-8b6c2e5d5eb34e96bf51aabb0010e9de"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-8b6c2e5d5eb34e96bf51aabb0010e9de") {
+      outputDiv = document.getElementById("altair-viz-8b6c2e5d5eb34e96bf51aabb0010e9de");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.14.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.14.1"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-101bf3c89e43bea5d81435ea99058a2b"}, "mark": {"type": "rect"}, "encoding": {"color": {"field": "Correlation", "scale": {"domain": [-1, 1], "scheme": "redblue"}, "type": "quantitative"}, "tooltip": [{"field": "Variable1", "type": "nominal"}, {"field": "Variable2", "type": "nominal"}, {"field": "Correlation", "format": ".3f", "type": "quantitative"}, {"field": "p_value", "format": ".3g", "type": "quantitative"}, {"field": "std_err", "format": ".3g", "type": "quantitative"}], "x": {"field": "Variable1", "sort": ["Associates Degree", "Bachelors Degree or Higher", "Black and Latino/Hispanic", "Median Household Income", "White and Latino/Hispanic", "buildings_cat"], "type": "ordinal"}, "y": {"field": "Variable2", "scale": {"reverse": true}, "sort": ["Associates Degree", "Bachelors Degree or Higher", "Black and Latino/Hispanic", "Median Household Income", "White and Latino/Hispanic", "buildings_cat"], "type": "ordinal"}}, "height": 450, "title": "Correlation Heatmap (Altair) with p-values & Std. Error", "width": 450, "$schema": "https://vega.github.io/schema/vega-lite/v5.14.1.json", "datasets": {"data-101bf3c89e43bea5d81435ea99058a2b": [{"Variable1": "Median Household Income", "Variable2": "Median Household Income", "Correlation": 1.0, "p_value": 0.0, "std_err": 0.0}, {"Variable1": "Median Household Income", "Variable2": "Bachelors Degree or Higher", "Correlation": 0.6077877127860252, "p_value": 1.4490686156520417e-42, "std_err": 0.03941049896956869}, {"Variable1": "Median Household Income", "Variable2": "Associates Degree", "Correlation": 0.008413347491275758, "p_value": 0.865464013226572, "std_err": 0.04962741018167158}, {"Variable1": "Median Household Income", "Variable2": "buildings_cat", "Correlation": 0.07996609878828351, "p_value": 0.10677402756961127, "std_err": 0.049470233450497836}, {"Variable1": "Median Household Income", "Variable2": "White and Latino/Hispanic", "Correlation": -0.09303536032706732, "p_value": 0.06044541756829452, "std_err": 0.04941391533655982}, {"Variable1": "Median Household Income", "Variable2": "Black and Latino/Hispanic", "Correlation": -0.18144013602728531, "p_value": 0.00022933936047725694, "std_err": 0.04880542137167751}, {"Variable1": "Bachelors Degree or Higher", "Variable2": "Median Household Income", "Correlation": 0.6077877127860252, "p_value": 1.4490686156520417e-42, "std_err": 0.03941049896956869}, {"Variable1": "Bachelors Degree or Higher", "Variable2": "Bachelors Degree or Higher", "Correlation": 1.0, "p_value": 0.0, "std_err": 0.0}, {"Variable1": "Bachelors Degree or Higher", "Variable2": "Associates Degree", "Correlation": 0.19683752508001073, "p_value": 6.255648590730964e-05, "std_err": 0.04865822772077745}, {"Variable1": "Bachelors Degree or Higher", "Variable2": "buildings_cat", "Correlation": 0.0007159362484917692, "p_value": 0.9884974264463365, "std_err": 0.049629153979465115}, {"Variable1": "Bachelors Degree or Higher", "Variable2": "White and Latino/Hispanic", "Correlation": -0.007511202204822841, "p_value": 0.8797741713929725, "std_err": 0.04962776668570166}, {"Variable1": "Bachelors Degree or Higher", "Variable2": "Black and Latino/Hispanic", "Correlation": -0.10023826661215687, "p_value": 0.043011225229420615, "std_err": 0.04937920749439841}, {"Variable1": "Associates Degree", "Variable2": "Median Household Income", "Correlation": 0.008413347491275758, "p_value": 0.865464013226572, "std_err": 0.04962741018167158}, {"Variable1": "Associates Degree", "Variable2": "Bachelors Degree or Higher", "Correlation": 0.19683752508001073, "p_value": 6.255648590730964e-05, "std_err": 0.04865822772077745}, {"Variable1": "Associates Degree", "Variable2": "Associates Degree", "Correlation": 1.0, "p_value": 0.0, "std_err": 0.0}, {"Variable1": "Associates Degree", "Variable2": "buildings_cat", "Correlation": -0.19156324486498272, "p_value": 9.875341385852919e-05, "std_err": 0.04871004800239942}, {"Variable1": "Associates Degree", "Variable2": "White and Latino/Hispanic", "Correlation": 0.2558042201259771, "p_value": 1.6184319350665335e-07, "std_err": 0.04797793522431456}, {"Variable1": "Associates Degree", "Variable2": "Black and Latino/Hispanic", "Correlation": 0.1712203362256787, "p_value": 0.0005136122243934112, "std_err": 0.048896281010996315}, {"Variable1": "buildings_cat", "Variable2": "Median Household Income", "Correlation": 0.07996609878828351, "p_value": 0.10677402756961127, "std_err": 0.049470233450497836}, {"Variable1": "buildings_cat", "Variable2": "Bachelors Degree or Higher", "Correlation": 0.0007159362484917692, "p_value": 0.9884974264463365, "std_err": 0.049629153979465115}, {"Variable1": "buildings_cat", "Variable2": "Associates Degree", "Correlation": -0.19156324486498272, "p_value": 9.875341385852919e-05, "std_err": 0.04871004800239942}, {"Variable1": "buildings_cat", "Variable2": "buildings_cat", "Correlation": 1.0, "p_value": 0.0, "std_err": 0.0}, {"Variable1": "buildings_cat", "Variable2": "White and Latino/Hispanic", "Correlation": -0.12721985979712552, "p_value": 0.01010279480569332, "std_err": 0.0492259069941034}, {"Variable1": "buildings_cat", "Variable2": "Black and Latino/Hispanic", "Correlation": -0.15947715361850312, "p_value": 0.0012288109583557623, "std_err": 0.04899399373748903}, {"Variable1": "White and Latino/Hispanic", "Variable2": "Median Household Income", "Correlation": -0.09303536032706732, "p_value": 0.06044541756829452, "std_err": 0.04941391533655982}, {"Variable1": "White and Latino/Hispanic", "Variable2": "Bachelors Degree or Higher", "Correlation": -0.007511202204822841, "p_value": 0.8797741713929725, "std_err": 0.04962776668570166}, {"Variable1": "White and Latino/Hispanic", "Variable2": "Associates Degree", "Correlation": 0.2558042201259771, "p_value": 1.6184319350665335e-07, "std_err": 0.04797793522431456}, {"Variable1": "White and Latino/Hispanic", "Variable2": "buildings_cat", "Correlation": -0.12721985979712552, "p_value": 0.01010279480569332, "std_err": 0.0492259069941034}, {"Variable1": "White and Latino/Hispanic", "Variable2": "White and Latino/Hispanic", "Correlation": 1.0, "p_value": 0.0, "std_err": 0.0}, {"Variable1": "White and Latino/Hispanic", "Variable2": "Black and Latino/Hispanic", "Correlation": 0.40520085859396837, "p_value": 1.4878300096335082e-17, "std_err": 0.04537235829259162}, {"Variable1": "Black and Latino/Hispanic", "Variable2": "Median Household Income", "Correlation": -0.18144013602728531, "p_value": 0.00022933936047725694, "std_err": 0.04880542137167751}, {"Variable1": "Black and Latino/Hispanic", "Variable2": "Bachelors Degree or Higher", "Correlation": -0.10023826661215687, "p_value": 0.043011225229420615, "std_err": 0.04937920749439841}, {"Variable1": "Black and Latino/Hispanic", "Variable2": "Associates Degree", "Correlation": 0.1712203362256787, "p_value": 0.0005136122243934112, "std_err": 0.048896281010996315}, {"Variable1": "Black and Latino/Hispanic", "Variable2": "buildings_cat", "Correlation": -0.15947715361850312, "p_value": 0.0012288109583557623, "std_err": 0.04899399373748903}, {"Variable1": "Black and Latino/Hispanic", "Variable2": "White and Latino/Hispanic", "Correlation": 0.40520085859396837, "p_value": 1.4878300096335082e-17, "std_err": 0.04537235829259162}, {"Variable1": "Black and Latino/Hispanic", "Variable2": "Black and Latino/Hispanic", "Correlation": 1.0, "p_value": 0.0, "std_err": 0.0}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+</div>
+</section>
+<section id="analysis-2" class="level2 text-box">
+<h2 class="anchored" data-anchor-id="analysis-2">Analysis 2</h2>
 <p>Based on the provided correlation heatmap,</p>
 <p>The relationship between post-secondary achievement rates and the presence of post-secondary school buildings within Philadelphia’s census tracts appears to be minimal.</p>
 <p>Specifically, the number of college buildings (building_count) shows a correlation of almost 0 with both bachelor’s degrees or higher (r = 0.001) and a weak negative correlation with associates degrees (r = -0.192), indicating that an increase in college buildings is not strongly associated with higher post-secondary attainment.</p>
 <p>When distinguishing between Black-Latines and White-Latines, Black and Latino/Hispanic populations show a modest positive correlation with associate degree attainment (r = 0.171), whereas White and Latino/Hispanic populations display a stronger positive correlation (r = 0.256) with associate degrees.</p>
-<p>However, neither group demonstrates a significant positive relationship with bachelor’s degrees, and the presence of college buildings does not notably mediate these educational outcomes. These findings suggest that factors other than proximity to post-secondary institutions may play a more crucial role in influencing educational attainment within Latino communities, with White-Latines exhibiting somewhat higher associate degree attainment compared to Black-Latines</p>
 <p>Moreover, building off of our findings in 1.3, Black-Latino hispanics have a modest negative correlation with Median Household Income, indicating that the higher the Median Household Income, the lower the Black-Latin population, in comparison with White-Latinos who have no correlation with Median Household Income.</p>
+<p>To conclude, I want to provide a bar chart breakdown of socioeconomic status and post-secondary achievement rates for the entireity of Philadelphia, Tracts that have more with Latines than Black Latines, and tracts that have more Black Latines than White Latines.</p>
 </section>
 
 
