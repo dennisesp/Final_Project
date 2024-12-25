@@ -9,12 +9,12 @@ subtitle: "Dennis Espejo || MUSA 550 Geospatial Data Science in Python"
 
 This project, titled "Analyzing Educational and Socioeconomic Disparities 
 for Latino and Afro-Latino Communities in Philadelphia Through Geospatial Analysis," 
-employs advanced geospatial techniques to examine the role of geography in shaping 
-access to educational opportunities and socioeconomic outcomes. 
-By visualizing and analyzing key datasets, this project aims to 
-highlight systemic barriers that exist within Latine communities in Philadelphia.
+aims to use advanced geospatial techniques to explore the differences in both the educational attainment and socioeconomic status of diverse racial identities under the overarching Latine ethnic identity.  
 
-Specifically, this paper aims to examine the differences between socioeconomic status and academic achievement between Afro (Black) - Latines, and White-Latines in Philadelphia. 
+
+
+Specifically, this paper aims to examine the differences between socioeconomic status and academic achievement between Afro (Black) - Latines, and White-Latines in Philadelphia by visualizing both the median household income, and proximity to post-secondary instiutions of these communities.
+
 
 </div>
 
@@ -36,10 +36,10 @@ To further contextualize the differences of experiences between Afro-Latine pers
 <div class="text-box">
 **Research Questions**
 
-To examine the differences between socioeconomic status and achievement rates of Black-Latine and White-Latine communities across Philadelphia the following research question was employed: 
+To examine the differences between socioeconomic status and achievement rates of Black-Latine and White-Latine communities across Philadelphia the following research questions were developed: 
 
-1) What are the differences in Median Household Income of tracts that contain more Black and Latino/Hispanics
-in comparison to White and Latino/Hispanic? 
+1) What are the differences in Median Household Income of tracts that contain more Black and Latine/Hispanics
+in comparison to White and Latine/Hispanic? 
 
 Moreover, this project's second questions aims to further analyze the economic and educational disparities in relation to post-secondary institutions
 
