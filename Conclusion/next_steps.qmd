@@ -1,7 +1,65 @@
-**Future Studies**
+<div class="text-box">
 
-More research is necessary to explore the underlying factors contributing to the observed income disparities and the limited impact of educational infrastructure on post-secondary achievement. Understanding these mechanisms can inform more effective interventions.
+## Discussion
 
-Conducting longitudinal studies can provide insights into how economic and educational outcomes evolve over time in different census tracts, offering a deeper understanding of the long-term effects of policies and interventions.
+</div>
 
-Comparative studies between different regions or cities can identify best practices and successful strategies for addressing similar disparities, facilitating the replication of effective models in diverse contexts.
+
+<div class="text-box">
+
+
+## Implications
+
+
+
+The findings of this study carry significant implications for policymakers, educational institutions, community organizations, and future research. These implications address economic disparities and educational outcomes within diverse census tracts, particularly those with varying racial and ethnic compositions.
+
+**Economic**
+
+1) The income disparities between White-Latine and Black-Latine predominant tracts suggest underlying structural issues such as unequal access to quality education, employment opportunities, and housing. Comprehensive strategies that address these root causes are essential to bridge the income gap. This may include investing in affordable housing, enhancing access to vocational training, and ensuring equitable education funding. 
+
+2) Implementing or expanding social support programs, such as affordable childcare, healthcare services, and financial assistance, can alleviate economic pressures on households in predominantly Black and Latine/Hispanic tracts, thereby contributing to increased household incomes.
+
+**Education**
+
+1) The finding that the presence of post-secondary institutions does not significantly impact achievement rates indicates that mere proximity to educational facilities is insufficient. Implying that educational instiutions are doing little to support their local communitie. Educational institutions should engage in active outreach and provide support services to effectively influence post-secondary attainment in their surrounding areas. 
+
+2) To improve post-secondary achievement rates, especially in communities with higher Black and Latine/Hispanic populations, there is a need for comprehensive support programs. Support programs may include mentorship programs, academic advising, financial aid counseling, and initiatives that address barriers such as transportation and childcare for their surrounding neighborhood environments. Aditionally, educational institutions should collaborate with local organizations to create pathways for students from underrepresented communities. Partnerships can facilitate access to resources, internships, and career opportunities that enhance educational outcomes.
+
+
+
+</div>
+
+
+<div class="text-box">
+
+## Limitations
+
+The current project was limited by multiple factors
+
+1) More intricate statistical analysis: My project compared differences within census tracts using simple calculations (mean averages), future studies should use more intricate statistical measures to better analyze the correlation between living within a census tract with a post-secondary building and my chosen demographic variables. Unfortunately, my statistical training is limited, and when initially trying to incorporate a basic Altair correlation heatmap, I found this approach to not clearly define which variables were decreasing and which was increasing within the **slight** negative correlations that would appear. 
+
+2) The method in which I distinguished Black-Latines, and White-Latines may be limited by the presence of other demographics that may influence trends within the chosen census tracts. Future studies should do an additional analysis of seperate demographic variables to analyze how these correlate within census tracts that have more Black-Latines than White-Latines and vice-versa. 
+
+3) Using more sophisticated statistical analysis (such as Moran's I) to test the influence of not only living within a census tract that has a post-secondary insititution, but also the effect of living in a census tract that neighboor's a post-secondary instiution. 
+
+
+
+</div> 
+
+<div class="text-box">
+
+## Future Studies
+
+Future studies should 
+
+1) Utilize measures like Moran’s I to assess the degree of spatial autocorrelation in  data, thereby understanding how proximity to certain features (e.g., post-secondary institutions) affects economic and educational outcomes.
+
+2) Expand the analysis to other cities that have a more predominant Black-Latine population (such as New York), to analyze if similar trends exist in other geographic locations. 
+
+3) Incorporate more sophisticated statistical methods such as multiple regression analysis, factor analysis, or structural equation modeling to examine the interplay between various socioeconomic and demographic variables to illustrate a better picture of the most influential factors contributing to income disparities and educational outcomes within different census tracts.
+
+
+
+
+

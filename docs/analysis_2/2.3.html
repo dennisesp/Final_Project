@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>quarto-input653d6492e01eb524 – MUSA 550</title>
+<title>quarto-inpute764e437324fabbb – MUSA 550</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -174,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../analysis/2-Choropleth.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1.2 Creating Black/White Latino Per Tract Choropleth Map</span></a>
+ <span class="menu-text">1.2 Creating Black/White Latine Per Tract Choropleth Map</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -212,12 +212,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">2.3 Bar Graphs of Tracts with College Buildings vs Tracts Without College Buildings</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis_2/2.4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2.4 <strong>BONUS</strong> Statistical Analysis and Seaborn Heatmap</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -232,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Conclusion/next_steps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">next_steps.html</span></a>
+ <span class="menu-text">Discussion</span></a>
   </div>
 </li>
       </ul>
@@ -251,6 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="bar-graphs-of-tracts-with-college-buildings-vs-tracts-without-college-buildings" class="level1 text-box">
 <h1>2.3 Bar Graphs of Tracts with College Buildings vs Tracts Without College Buildings</h1>
+<p>Here you’ll find my steps to make a bar graph looking at the demographic characteristics of Philadelphia census tracts with a college building in comparison to tracts without a college building. The comparison of Buildings vs No Buildings will be done over three distinct sets of census tracts that I’ll elaborate on in <strong>part 2.3.3</strong></p>
 </section>
 <section id="load-data-and-counting" class="level2 text-box">
 <h2 class="anchored" data-anchor-id="load-data-and-counting">2.3.1 Load Data and Counting</h2>
@@ -260,7 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Group buildings by census tracts</p></li>
 <li><p>Create a count column counting the college buildings per census tract.</p></li>
 </ol>
-<div id="7982a4ad-2bd4-4504-9d85-d76e28b2046e" class="cell" data-tags="[]" data-execution_count="45">
+<div id="7982a4ad-2bd4-4504-9d85-d76e28b2046e" class="cell" data-tags="[]" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>college_buildings <span class="op">=</span> gpd.read_file(<span class="st">"Universities_Colleges.geojson"</span>)</span>
@@ -341,7 +336,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="45">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
@@ -450,7 +445,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="section">2.3.2</h2>
 <p>There are a lot of census tracts across Philadelphia with 0 college buildings.</p>
 <p>To address this, I will transform the college count variable into a categorical variable, distinguishing between census tracts that have one or more college buildings and those that have none. This approach will facilitate a clearer analysis of the relationship between the presence of college buildings and other variables of interest within each census tract.</p>
-<div id="ba0c3eac-3e12-48b2-98e3-9e38202fd4a7" class="cell" data-tags="[]" data-execution_count="46">
+<div id="ba0c3eac-3e12-48b2-98e3-9e38202fd4a7" class="cell" data-tags="[]" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> [</span>
@@ -460,13 +455,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"White and Latino/Hispanic"</span>,</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Black and Latino/Hispanic"</span>,</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> numeric_cols:</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    result[col] <span class="op">=</span> pd.to_numeric(result[col], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>tracts_all_df <span class="op">=</span> result.copy()</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>tracts_all_df <span class="op">=</span> result.copy()</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> numeric_cols:</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    result[col] <span class="op">=</span> pd.to_numeric(tracts_all_df[col], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> categorize_building_count(count):</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> count <span class="op">==</span> <span class="dv">0</span>:</span>
@@ -497,7 +492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Bar chart of tracts with more Black Latines than White Latines</p></li>
 <li><p>Bar chart of tracts with more White Latines than Black Latines</p></li>
 </ol>
-<div id="03064daa-8b65-40fe-b215-627d01141b61" class="cell" data-tags="[]" data-execution_count="47">
+<div id="03064daa-8b65-40fe-b215-627d01141b61" class="cell" data-tags="[]" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_mean_plot(df, title):</span>
@@ -563,30 +558,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>    final_chart <span class="op">=</span> chart <span class="op">+</span> text</span>
 <span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> final_chart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> final_chart</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>Philadelphia_plot<span class="op">=</span> create_mean_plot(</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>    tracts_all_df,</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mean Socioeconomic Variables by Building Category Entire Philadelphia"</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>white_plot <span class="op">=</span> create_mean_plot(</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>    white_greater_df,</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mean Socioeconomic Variables by Building Category (White Latino &gt; Black Latino)"</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>black_plot <span class="op">=</span> create_mean_plot(</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>    black_greater_df,</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mean Socioeconomic Variables by Building Category (Black Latino &gt; White Latino)"</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>final_chart <span class="op">=</span> alt.hconcat(Philadelphia_plot,black_plot, white_plot ).resolve_scale(</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span><span class="st">'shared'</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>final_chart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-</div>
-<div id="5f3fbf68-e7ef-417c-b635-a028c9da9ed1" class="cell" data-tags="[]" data-execution_count="48">
-<div class="cell-output cell-output-display" data-execution_count="48">
+<div class="cell-output cell-output-display" data-execution_count="10">
 
 <style>
-  #altair-viz-661e7149811e484cb80cf41eca4e49b9.vega-embed {
+  #altair-viz-17dd235fde53443e8be88c36e9d65cca.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-661e7149811e484cb80cf41eca4e49b9.vega-embed details,
-  #altair-viz-661e7149811e484cb80cf41eca4e49b9.vega-embed details summary {
+  #altair-viz-17dd235fde53443e8be88c36e9d65cca.vega-embed details,
+  #altair-viz-17dd235fde53443e8be88c36e9d65cca.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-661e7149811e484cb80cf41eca4e49b9"></div>
+<div id="altair-viz-17dd235fde53443e8be88c36e9d65cca"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-661e7149811e484cb80cf41eca4e49b9") {
-      outputDiv = document.getElementById("altair-viz-661e7149811e484cb80cf41eca4e49b9");
+    if (outputDiv.id !== "altair-viz-17dd235fde53443e8be88c36e9d65cca") {
+      outputDiv = document.getElementById("altair-viz-17dd235fde53443e8be88c36e9d65cca");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -632,7 +655,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "hconcat": [{"layer": [{"mark": {"type": "bar"}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "name": "view_22", "title": "Mean Socioeconomic Variables by Building Category Entire Philadelphia"}, {"mark": {"type": "text", "align": "center", "baseline": "bottom", "dy": -5}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "text": {"field": "Mean", "format": ".0f", "type": "quantitative"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "title": "Mean Socioeconomic Variables by Building Category Entire Philadelphia"}], "data": {"name": "data-90890cb3c763f7d16611291bdf38c5bd"}, "height": 400, "width": 300}, {"layer": [{"mark": {"type": "bar"}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "name": "view_24", "title": "Mean Socioeconomic Variables by Building Category (Black Latino > White Latino)"}, {"mark": {"type": "text", "align": "center", "baseline": "bottom", "dy": -5}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "text": {"field": "Mean", "format": ".0f", "type": "quantitative"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "title": "Mean Socioeconomic Variables by Building Category (Black Latino > White Latino)"}], "data": {"name": "data-52a9b5543818b9854ef9db77a7912730"}, "height": 400, "width": 300}, {"layer": [{"mark": {"type": "bar"}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "name": "view_23", "title": "Mean Socioeconomic Variables by Building Category (White Latino > Black Latino)"}, {"mark": {"type": "text", "align": "center", "baseline": "bottom", "dy": -5}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "text": {"field": "Mean", "format": ".0f", "type": "quantitative"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "title": "Mean Socioeconomic Variables by Building Category (White Latino > Black Latino)"}], "data": {"name": "data-32dbd6a221b414f440a044f18500dce0"}, "height": 400, "width": 300}], "params": [{"name": "param_22", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales", "views": ["view_22"]}, {"name": "param_24", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales", "views": ["view_24"]}, {"name": "param_23", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales", "views": ["view_23"]}], "resolve": {"scale": {"y": "shared"}}, "$schema": "https://vega.github.io/schema/vega-lite/v5.14.1.json", "datasets": {"data-90890cb3c763f7d16611291bdf38c5bd": [{"Building Category": "No Buildings", "Variable": "Median Household Income", "Mean": 50101.84365781711}, {"Building Category": "Has Buildings", "Variable": "Median Household Income", "Mean": 56598.79710144927}, {"Building Category": "No Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 475.86725663716817}, {"Building Category": "Has Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 476.5507246376812}, {"Building Category": "No Buildings", "Variable": "Associates Degree", "Mean": 169.89675516224187}, {"Building Category": "Has Buildings", "Variable": "Associates Degree", "Mean": 105.5072463768116}], "data-52a9b5543818b9854ef9db77a7912730": [{"Building Category": "No Buildings", "Variable": "Median Household Income", "Mean": 38381.34482758621}, {"Building Category": "Has Buildings", "Variable": "Median Household Income", "Mean": 38981.2}, {"Building Category": "No Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 359.1896551724138}, {"Building Category": "Has Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 383.4}, {"Building Category": "No Buildings", "Variable": "Associates Degree", "Mean": 182.0344827586207}, {"Building Category": "Has Buildings", "Variable": "Associates Degree", "Mean": 170.2}], "data-32dbd6a221b414f440a044f18500dce0": [{"Building Category": "No Buildings", "Variable": "Median Household Income", "Mean": 57212.885714285716}, {"Building Category": "Has Buildings", "Variable": "Median Household Income", "Mean": 62932.07272727273}, {"Building Category": "No Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 547.6979591836734}, {"Building Category": "Has Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 522.9090909090909}, {"Building Category": "No Buildings", "Variable": "Associates Degree", "Mean": 181.18775510204082}, {"Building Category": "Has Buildings", "Variable": "Associates Degree", "Mean": 95.32727272727273}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "hconcat": [{"layer": [{"mark": {"type": "bar"}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "name": "view_10", "title": "Mean Socioeconomic Variables by Building Category Entire Philadelphia"}, {"mark": {"type": "text", "align": "center", "baseline": "bottom", "dy": -5}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "text": {"field": "Mean", "format": ".0f", "type": "quantitative"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "title": "Mean Socioeconomic Variables by Building Category Entire Philadelphia"}], "data": {"name": "data-90890cb3c763f7d16611291bdf38c5bd"}, "height": 400, "width": 300}, {"layer": [{"mark": {"type": "bar"}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "name": "view_12", "title": "Mean Socioeconomic Variables by Building Category (Black Latino > White Latino)"}, {"mark": {"type": "text", "align": "center", "baseline": "bottom", "dy": -5}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "text": {"field": "Mean", "format": ".0f", "type": "quantitative"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "title": "Mean Socioeconomic Variables by Building Category (Black Latino > White Latino)"}], "data": {"name": "data-52a9b5543818b9854ef9db77a7912730"}, "height": 400, "width": 300}, {"layer": [{"mark": {"type": "bar"}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "name": "view_11", "title": "Mean Socioeconomic Variables by Building Category (White Latino > Black Latino)"}, {"mark": {"type": "text", "align": "center", "baseline": "bottom", "dy": -5}, "encoding": {"color": {"field": "Variable", "scale": {"domain": ["Median Household Income", "Bachelors Degree or Higher", "Associates Degree"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]}, "title": "Variable", "type": "nominal"}, "text": {"field": "Mean", "format": ".0f", "type": "quantitative"}, "tooltip": [{"field": "Building Category", "title": "Building Category", "type": "nominal"}, {"field": "Variable", "type": "nominal"}, {"field": "Mean", "format": ".2f", "type": "quantitative"}], "x": {"field": "Building Category", "title": "Building Category", "type": "nominal"}, "xOffset": {"field": "Variable", "type": "nominal"}, "y": {"field": "Mean", "title": "Mean Value", "type": "quantitative"}}, "title": "Mean Socioeconomic Variables by Building Category (White Latino > Black Latino)"}], "data": {"name": "data-32dbd6a221b414f440a044f18500dce0"}, "height": 400, "width": 300}], "params": [{"name": "param_10", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales", "views": ["view_10"]}, {"name": "param_12", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales", "views": ["view_12"]}, {"name": "param_11", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales", "views": ["view_11"]}], "resolve": {"scale": {"y": "shared"}}, "$schema": "https://vega.github.io/schema/vega-lite/v5.14.1.json", "datasets": {"data-90890cb3c763f7d16611291bdf38c5bd": [{"Building Category": "No Buildings", "Variable": "Median Household Income", "Mean": 50101.84365781711}, {"Building Category": "Has Buildings", "Variable": "Median Household Income", "Mean": 56598.79710144927}, {"Building Category": "No Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 475.86725663716817}, {"Building Category": "Has Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 476.5507246376812}, {"Building Category": "No Buildings", "Variable": "Associates Degree", "Mean": 169.89675516224187}, {"Building Category": "Has Buildings", "Variable": "Associates Degree", "Mean": 105.5072463768116}], "data-52a9b5543818b9854ef9db77a7912730": [{"Building Category": "No Buildings", "Variable": "Median Household Income", "Mean": 38381.34482758621}, {"Building Category": "Has Buildings", "Variable": "Median Household Income", "Mean": 38981.2}, {"Building Category": "No Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 359.1896551724138}, {"Building Category": "Has Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 383.4}, {"Building Category": "No Buildings", "Variable": "Associates Degree", "Mean": 182.0344827586207}, {"Building Category": "Has Buildings", "Variable": "Associates Degree", "Mean": 170.2}], "data-32dbd6a221b414f440a044f18500dce0": [{"Building Category": "No Buildings", "Variable": "Median Household Income", "Mean": 57212.885714285716}, {"Building Category": "Has Buildings", "Variable": "Median Household Income", "Mean": 62932.07272727273}, {"Building Category": "No Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 547.6979591836734}, {"Building Category": "Has Buildings", "Variable": "Bachelors Degree or Higher", "Mean": 522.9090909090909}, {"Building Category": "No Buildings", "Variable": "Associates Degree", "Mean": 181.18775510204082}, {"Building Category": "Has Buildings", "Variable": "Associates Degree", "Mean": 95.32727272727273}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 </div>
@@ -641,15 +664,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
 <p>In contrast to my initial insights from part 2.2, the Median Household Income is not lower in tracts that contain a college building. In fact, the Median Household Income appears to be a bit larger when compared to census tracts without a college building.</p>
 <p>Moreover, there is also little variation between the mean values of Associates and Bahcelors Degree within census tracts that have a buildings vs those that do not, indicating that the presence of a college building in the nearby area does little to mediate post-secondary achievement rates and Median Household Income.</p>
-<p>To answer the second question “How is post-secondary achievement rate (Associate/Bachelors Degree) influenced by living in the same tract as a post-secondary school building(s).</p>
+<p>Additionally, Black-Latine predominant tracts display lower socioeconomic indicators compared to the city average and tracts with a higher White-Latine population. Specifically, there is a lower mean number of individuals with a Bachelor’s degree but a higher mean number with an Associate’s degree.</p>
+<p>White-Latine/Hispanic predominant tracts demonstrate higher median household incomes and a more significant number of individuals holding a Bachelors degree, indicating better economic opportunities and higher educational attainment within White-Latine predominant tracts.</p>
+<p>The previous findings hint that demographic compositions may play a more crucial role in shaping educational and economic landscapes within census tracts than the presence of post-secondary buildings. Future studies should continue to analyze other attributes that influence post-secondary achievement within different Latine racial groups.</p>
+<p>To answer the second question;</p>
+<p>“How is post-secondary achievement rate (Associate/Bachelors Degree) influenced by living in the same tract as a post-secondary school building(s).</p>
 <ol type="a">
 <li>How does this trend differ between tracts that have more Black/Latines, than White/Latines and vice versa.”</li>
 </ol>
-<p><strong>Overall, the presence of college buildings does not significantly impact post-secondary achievement rates, and this does not differ between Census tracts have more Black/Latines, than White/Latines and vice versa</strong></p>
-<p>Aditionally, Black and Latino/Hispanic predominant tracts display lower socioeconomic indicators compared to the city average and tracts with a higher White Latino population. Specifically, there is a lower mean number of individuals with a Bachelor’s degree but a higher mean number with an Associate’s degree. While White and Latino/Hispanic Predominant Tracts tracts demonstrate higher median household incomes and a greater number of individuals holding a Bachelor’s degree, indicating better economic opportunities and higher educational attainment.</p>
-<p>Demographic compositions may actually play a more crucial role in shaping educational and economic landscapes within census tracts, and future studies should continue to analyze other attributtes that influence post-secondary achievement within different Latine racial group.</p>
-<p>Moreover, future studies should also investigate more intricate spatial statistical analysis to analyze…..</p>
-<p>However, the little significance that living in a census tract with a post-secondary building can also be used to inform post-secondary instiutions to begin advancing their outreach efforts into their local communities.</p>
+<p><strong>Overall, the presence of college buildings does not significantly impact post-secondary degree attainment levels. The influence of college buildings on post-secondary achievement rates does not differ between Census tracts have more Black/Latines, than White/Latines and vice versa</strong></p>
 </section>
 
 
