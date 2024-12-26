@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>quarto-input32ca04d5104cee2a – MUSA 550</title>
+<title>quarto-inputf333eb17344707ea – MUSA 550</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -257,7 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Plot these correlations on a Seaborn heat map with an interactive tool tip that shows the correlation, p-value, and standard errors of each variable as it correlates with one another.</p></li>
 <li><p>Repeat the previous two steps for tracts that have larger White-Latine populations and tracks that have larger Black Latine populations</p></li>
 </ol>
-<div id="b9d3c507-de55-48c5-8273-cd3309c1f114" class="cell" data-tags="[]" data-execution_count="2">
+<div id="b9d3c507-de55-48c5-8273-cd3309c1f114" class="cell" data-tags="[]" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tracts_all_df<span class="op">=</span>pd.read_csv(<span class="st">"demographics_with_tracts_and_buildings_per_tract.csv"</span>)</span>
@@ -318,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>corr_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
 
@@ -395,7 +395,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="696df2bd-bfdb-43bf-9c1e-c5239d5c27bb" class="cell" data-tags="[]" data-execution_count="3">
+<div id="696df2bd-bfdb-43bf-9c1e-c5239d5c27bb" class="cell" data-tags="[]" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>merged_long <span class="op">=</span> pd.concat([</span>
@@ -429,23 +429,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-13be6009d2d240e38ef3aba2aed7c4f0.vega-embed {
+  #altair-viz-e2e239dc813a40779312e162b04addd6.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-13be6009d2d240e38ef3aba2aed7c4f0.vega-embed details,
-  #altair-viz-13be6009d2d240e38ef3aba2aed7c4f0.vega-embed details summary {
+  #altair-viz-e2e239dc813a40779312e162b04addd6.vega-embed details,
+  #altair-viz-e2e239dc813a40779312e162b04addd6.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-13be6009d2d240e38ef3aba2aed7c4f0"></div>
+<div id="altair-viz-e2e239dc813a40779312e162b04addd6"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-13be6009d2d240e38ef3aba2aed7c4f0") {
-      outputDiv = document.getElementById("altair-viz-13be6009d2d240e38ef3aba2aed7c4f0");
+    if (outputDiv.id !== "altair-viz-e2e239dc813a40779312e162b04addd6") {
+      outputDiv = document.getElementById("altair-viz-e2e239dc813a40779312e162b04addd6");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
