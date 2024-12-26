@@ -1,5 +1,6 @@
 
 
+
 <div class="text-box">
 # Part 2: Correlation Between Demographics and Post-Secondary Buildings Per Tract
 </div>
@@ -11,7 +12,7 @@ Part 2 is Dedicated to Answering the Following Research Question
 
 2) How is post-secondary achievement rate (Associate/Bachelors Degree) influenced by living in the same tract as a post-secondary school building(s). 
        
-       a) How does this trend differ between tracts that have more Black/Latines, than White/Latines and vice versa. 
+       a) How does this trend differ between tracts that have more Black/Latines than White/Latines and vice versa. 
              
 
 </div>
@@ -36,13 +37,6 @@ Each bar chart has two sets of bars (Building vs No Building) and the bar charts
     c) Bar chart of tracts with more Black Latines than White Latines
 
 
-**Bonus**
-
-5) Statistical analysis (Correlation Coefficient, Standard Error, & P-Value) of demographic variables 
-and presence of post-secondary school buildings per census tract.  
-
-6) Creation of  correlation heatmap with hvplot with a touchtip that shows the correlation, standard error, and p-value
-between the relationships of all demographic variables and school buildings per tract 
 
 </div>
 

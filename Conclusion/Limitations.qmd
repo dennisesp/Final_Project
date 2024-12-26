@@ -16,12 +16,12 @@
 The findings of this study could carry significant implications for policymakers, educational institutions, community organizations, and future research to address economic disparities and educational outcomes within different racial identities under the overarching Latine identity. 
 
 
+The findings of this study can be used to: 
 
 
-1) To improve post-secondary achievement rates, especially in communities with higher Black-Latine/Hispanic populations, there is a need for comprehensive support programs. Support programs may include mentorship programs, academic advising, financial aid counseling, and initiatives that address barriers such as transportation for this specific community. Aditionally, educational institutions should collaborate with local organizations to create pathways for students from underrepresented communities, as well as approach Latine communities with a more nuanced understanding of the different racial experiences within the Latine community to better serve Latine students. Partnerships can facilitate access to resources, internships, and career opportunities that enhance educational outcomes.
+1) Advocate for support programs that improve post-secondary achievement rates, especially in communities with higher Black-Latine/Hispanic populations. Support programs may include mentorship programs, academic advising, financial aid counseling, and initiatives that address barriers such as transportation for Black-Latine communities. Aditionally, educational institutions should collaborate with local organizations to create pathways for students from underrepresented communities, as well as approach Latine communities with a more nuanced understanding of the different racial experiences within the Latine community to better serve Latine students. Partnerships can facilitate access to resources, internships, and career opportunities that enhance educational outcomes.
 
-
-2) The finding that the presence of post-secondary institutions does not significantly impact achievement rates indicates that mere proximity to educational facilities is insufficient. Implying that educational instiutions are doing little to support their local communities. Educational institutions should engage in active outreach and provide support services to effectively influence post-secondary attainment in their surrounding areas. 
+2) Promote educational institutions to engage in active outreach and provide support services to effectively influence post-secondary attainment in their surrounding areas. The finding that the presence of post-secondary institutions does not significantly impact achievement rates indicates that mere proximity to educational facilities is insufficient. Implying that educational instiutions are doing little to support their local communities. 
 
 
 
@@ -31,7 +31,7 @@ The findings of this study could carry significant implications for policymakers
 
 ## Limitations
 
-The current project was limited by multiple factors
+The current project was limited by multiple factors:
 
 1) More intricate statistical analysis: My project compared differences within census tracts using simple calculations (mean averages), future studies should use more intricate statistical measures to better analyze the correlation between living within a census tract with a post-secondary building and my chosen demographic variables. Unfortunately, my statistical training is limited, and when initially trying to incorporate a basic Altair correlation heatmap, I found this approach to not clearly define which variables were decreasing and which was increasing within the **slight** negative correlations that would appear. 
 
@@ -47,7 +47,7 @@ The current project was limited by multiple factors
 
 ## Future Studies
 
-Future studies should 
+Future studies should:
 
 1) Utilize measures like Moran’s I to assess the degree of spatial autocorrelation in  data, thereby understanding how proximity to certain features (e.g., post-secondary institutions) affects economic and educational outcomes.
 
