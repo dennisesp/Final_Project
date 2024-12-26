@@ -1,5 +1,5 @@
 ---
-title: "Latino & Afro-Latino Landscapes: Geospatial Data Science Revealing Disparities in Philadelphia"
+title: "Latine & Afro-Latine Landscapes: Geospatial Data Science Revealing Disparities in Philadelphia"
 subtitle: "Dennis Espejo || MUSA 550 Geospatial Data Science in Python"
 ---
 
@@ -7,14 +7,13 @@ subtitle: "Dennis Espejo || MUSA 550 Geospatial Data Science in Python"
 
 **About this Project**
 
-This project, titled "Analyzing Educational and Socioeconomic Disparities 
-for Latino and Afro-Latino Communities in Philadelphia Through Geospatial Analysis," 
-aims to use advanced geospatial techniques to explore the differences in both the educational attainment and socioeconomic status of diverse racial identities under the overarching Latine ethnic identity.  
+This project, titled **"Analyzing Educational and Socioeconomic Disparities 
+for Latine and Afro-Latine Communities in Philadelphia Through Geospatial Analysis"**
+aims to use geospatial data to explore the differences in both the educational attainment and socioeconomic status of diverse racial identities under the overarching Latine ethnic identity.  
 
 Specifically, this project aims to examine the differences between socioeconomic status and academic achievement between Afro (Black) - Latines, and White-Latines in Philadelphia by visualizing both the median household income, and proximity to post-secondary instiutions of these communities.
 
-
-For this project, White-Latines will be defined as persons who marked their ethnicity as Latine, and race as White in the 2020 census. Similarly, Black-Latines are persons who marked their ethnicity as Latine, but race as Black. 
+For this project, White-Latines will be defined as persons who marked their ethnicity as Latine, and race as White in the 2020 census. Similarly, Black-Latines are persons who marked their ethnicity as Latine, but race as Black.  
 
 Moreover, for this project, I will use "Latine," which is a grammatically cohesive and gender-neutral term encompassing all persons under the "Latino/a/x/e" identity. 
 
@@ -38,16 +37,30 @@ To further contextualize the differences of experiences between Afro-Latine pers
 
 </div>
 
+<div class="text-box">
+
+**Why this topic? **
+
+Few publications explore the differences in educational trajectories between Afro (Black) Latines and non-Black Latines. Moreover, to the author’s knowledge, no existing studies utilize geospatial data to analyze a city's Afro-Latine landscape in conjunction with the demographic variables that may influence Afro-Latine educational attainment rates.
+
+This project aims to contribute to the growing body of post-secondary Afro-Latine studies by examining disparities in socio-economic status and educational achievement between Afro-Latines and White-Latines.
+
+By presenting a clearer picture of racial differences within the Latine identity, this project will provide organizations with a more nuanced understanding of how students and communities under the Latine monolith vary. Differentiating these experiences will help identify Latine communities that may not receive adequate attention, potentially facilitating the allocation of appropriate financial and academic supports.
+
+Furthermore, analyzing how institutions influence their surrounding areas—and their relationship with Afro-Latine and White-Latine predominant tracts—can provide valuable insights into institutional impacts on these communities. This project could offer practical implications for how institutions can better support students and their local communities.
+
+
+</div>
 
 <div class="text-box">
 **Research Questions**
 
-To examine the differences between socioeconomic status and achievement rates of Black-Latine and White-Latine communities across Philadelphia the following research questions were developed: 
+To examine the differences between socioeconomic status of Black-Latine and White-Latine communities across Philadelphia the following research questions was developed: 
 
 1) What are the differences in Median Household Income of tracts that contain more Black and Latine/Hispanics
 in comparison to White and Latine/Hispanic? 
 
-Moreover, this project's second questions aims to further analyze the economic and educational disparities in relation to post-secondary institutions
+Moreover, this project's second questions aims to further analyze the economic and educational disparities in relation to post-secondary institutional influence:
 
 
 2) How is post-secondary achievement rate (Associate and/or Bachelors Degree ) influenced by living in the same tract as a post-secondary school building(s). 

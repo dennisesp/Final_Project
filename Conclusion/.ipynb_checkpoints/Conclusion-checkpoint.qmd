@@ -1,5 +1,5 @@
 <div class="text-box">
-# Conclusion and Discussion 
+# Conclusion
 </div>
 
 <div class="text-box">
@@ -9,8 +9,8 @@
 As a refresher this project's research questions were 
 
 
-**1)** What are the differences in Median Household Income of tracts that contain more Black and Latine/Hispanics
-in comparison to White and Latine/Hispanic? 
+**1)** What are the differences in Median Household Income of tracts that contain more Black-Latine/Hispanics
+in comparison to White-Latine/Hispanics? 
 
 **2)** How is post-secondary achievement rate (Associate, Bachelors Degree, and/or Master's Degree) influenced by living in the same tract as a post-secondary school building(s). 
 
@@ -31,37 +31,6 @@ Based on the present project's analysis the answers to the research questions ar
 </div>
 
 
-<div class="text-box">
-
-
-## Implications
 
 
 
-The findings of this study carry significant implications for policymakers, educational institutions, community organizations, and future research. These implications address economic disparities and educational outcomes within diverse census tracts, particularly those with varying racial and ethnic compositions.
-
-**Economic**
-
-1) The income disparities between White-Latine and Black-Latine predominant tracts suggest underlying structural issues such as unequal access to quality education, employment opportunities, and housing. Comprehensive strategies that address these root causes are essential to bridge the income gap. This may include investing in affordable housing, enhancing access to vocational training, and ensuring equitable education funding. 
-
-2) Implementing or expanding social support programs, such as affordable childcare, healthcare services, and financial assistance, can alleviate economic pressures on households in predominantly Black and Latine/Hispanic tracts, thereby contributing to increased household incomes.
-
-**Education**
-
-1) The finding that the presence of post-secondary institutions does not significantly impact achievement rates indicates that mere proximity to educational facilities is insufficient. Implying that educational instiutions are doing little to support their local communitie. Educational institutions should engage in active outreach and provide support services to effectively influence post-secondary attainment in their surrounding areas. 
-
-2) To improve post-secondary achievement rates, especially in communities with higher Black and Latine/Hispanic populations, there is a need for comprehensive support programs. Support programs may include mentorship programs, academic advising, financial aid counseling, and initiatives that address barriers such as transportation and childcare for their surrounding neighborhood environments. Aditionally, educational institutions should collaborate with local organizations to create pathways for students from underrepresented communities. Partnerships can facilitate access to resources, internships, and career opportunities that enhance educational outcomes.
-
-
-
-</div>
-
-
-<div class="text-box">
-
-
-## Next Steps
-
-
-
-</div>

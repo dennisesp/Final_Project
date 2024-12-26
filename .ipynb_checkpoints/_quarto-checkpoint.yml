@@ -38,7 +38,7 @@ website:
           
       - section: Conclusion/Conclusion.qmd
         contents:
-          - Conclusion/next_steps.qmd
+          - Conclusion/Limitations.qmd
 
 format:
   html:

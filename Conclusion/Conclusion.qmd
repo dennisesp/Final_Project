@@ -1,5 +1,5 @@
 <div class="text-box">
-# Conclusion and Discussion 
+# Conclusion
 </div>
 
 <div class="text-box">
@@ -9,8 +9,8 @@
 As a refresher this project's research questions were 
 
 
-**1)** What are the differences in Median Household Income of tracts that contain more Black and Latine/Hispanics
-in comparison to White and Latine/Hispanic? 
+**1)** What are the differences in Median Household Income of tracts that contain more Black-Latine/Hispanics
+in comparison to White-Latine/Hispanics? 
 
 **2)** How is post-secondary achievement rate (Associate, Bachelors Degree, and/or Master's Degree) influenced by living in the same tract as a post-secondary school building(s). 
 
