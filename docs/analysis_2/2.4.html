@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>quarto-input3109e5f642b2edba – MUSA 550</title>
+<title>quarto-input32ca04d5104cee2a – MUSA 550</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -126,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
@@ -242,18 +242,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#bonus-statistical-analysis-and-seaborn-heatmap" id="toc-bonus-statistical-analysis-and-seaborn-heatmap" class="nav-link active" data-scroll-target="#bonus-statistical-analysis-and-seaborn-heatmap">2.4 <strong>BONUS</strong> Statistical Analysis and Seaborn Heatmap</a></li>
-  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis_2/index.html">Part 2: Correlation Between Demographics and Post-Secondary Buildings Per Tract</a></li><li class="breadcrumb-item"><a href="../analysis_2/2.4.html">2.4 <strong>BONUS</strong> Statistical Analysis and Seaborn Heatmap</a></li></ol></nav></header>
+<main class="content column-page-right" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis_2/index.html">Part 2: Correlation Between Demographics and Post-Secondary Buildings Per Tract</a></li><li class="breadcrumb-item"><a href="../analysis_2/2.4.html">2.4 <strong>BONUS</strong> Statistical Analysis and Seaborn Heatmap</a></li></ol></nav></header>
 
 
 
@@ -266,9 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Plot these correlations on a Seaborn heat map with an interactive tool tip that shows the correlation, p-value, and standard errors of each variable as it correlates with one another.</p></li>
 <li><p>Repeat the previous two steps for tracts that have larger White-Latine populations and tracks that have larger Black Latine populations</p></li>
 </ol>
-<p>import pandas as pd import numpy as np from scipy.stats import pearsonr</p>
-<p>import altair as alt import geopandas as gpd import hvplot.pandas import numpy as np import pandas as pd import seaborn as sns from matplotlib import pyplot as plt import requests import folium import panel as pn import xyzservices</p>
-<div id="b9d3c507-de55-48c5-8273-cd3309c1f114" class="cell" data-tags="[]" data-execution_count="12">
+<div id="b9d3c507-de55-48c5-8273-cd3309c1f114" class="cell" data-tags="[]" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tracts_all_df<span class="op">=</span>pd.read_csv(<span class="st">"demographics_with_tracts_and_buildings_per_tract.csv"</span>)</span>
@@ -329,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>corr_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -406,7 +395,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="696df2bd-bfdb-43bf-9c1e-c5239d5c27bb" class="cell" data-tags="[]" data-execution_count="13">
+<div id="696df2bd-bfdb-43bf-9c1e-c5239d5c27bb" class="cell" data-tags="[]" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>merged_long <span class="op">=</span> pd.concat([</span>
@@ -440,23 +429,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 
 <style>
-  #altair-viz-83b7251de42a48d7a4ce138379aaf069.vega-embed {
+  #altair-viz-13be6009d2d240e38ef3aba2aed7c4f0.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-83b7251de42a48d7a4ce138379aaf069.vega-embed details,
-  #altair-viz-83b7251de42a48d7a4ce138379aaf069.vega-embed details summary {
+  #altair-viz-13be6009d2d240e38ef3aba2aed7c4f0.vega-embed details,
+  #altair-viz-13be6009d2d240e38ef3aba2aed7c4f0.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-83b7251de42a48d7a4ce138379aaf069"></div>
+<div id="altair-viz-13be6009d2d240e38ef3aba2aed7c4f0"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-83b7251de42a48d7a4ce138379aaf069") {
-      outputDiv = document.getElementById("altair-viz-83b7251de42a48d7a4ce138379aaf069");
+    if (outputDiv.id !== "altair-viz-13be6009d2d240e38ef3aba2aed7c4f0") {
+      outputDiv = document.getElementById("altair-viz-13be6009d2d240e38ef3aba2aed7c4f0");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -515,7 +504,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>When distinguishing between Black-Latines and White-Latines, Black and Latino/Hispanic populations show a modest positive correlation with associate degree attainment (r = 0.171), whereas White and Latino/Hispanic populations display a stronger positive correlation (r = 0.256) with associate degrees.</p>
 <p>Moreover, building off of our findings in 1.3, Black-Latino hispanics have a modest negative correlation with Median Household Income, indicating that the higher the Median Household Income, the lower the Black-Latin population, in comparison with White-Latinos who have no correlation with Median Household Income.</p>
 <p>However, as noted in <strong>part 2.3</strong> there are no strong relationships between presence of post-secondary building and any demographic variables.</p>
-<p>To conclude, I want to provide a bar chart breakdown of socioeconomic status and post-secondary achievement rates for the entireity of Philadelphia, Tracts that have more with Latines than Black Latines, and tracts that have more Black Latines than White Latines.</p>
 </section>
 
 
