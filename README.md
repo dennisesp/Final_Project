@@ -1,7 +1,24 @@
-# Quarto website template
+# Quarto website
 
-A template repository to use as a starting point for a public website describing
-the analysis and results the course's final project. The website uses
-Quarto to generate content and GitHub Pages to host the website.
+https://dennisesp.github.io/Final_Project/
 
-The published site for this example repository is available at: [https://musa-550-fall-2024.github.io/quarto_template/](https://musa-550-fall-2024.github.io/quarto_template/).
+# Quarto Repository
+
+I was unable to build my repository within the classroom repository due to the "pages" limitation for private repositories. I found it easier to build my repository outside of the classroom github, and am adding the link to my direct repository below. 
+
+https://github.com/dennisesp/Final_Project
+
+
+# About
+
+Most of my rationale/gap in literature/ motivation for the current project are in my "Welcome" section 
+
+As well as a detailed elaboration of the project's implications, limitations, and research question answers within the Conclusion/Implications section 
+
+
+
+
+
+
+
+
