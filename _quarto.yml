@@ -20,25 +20,29 @@ website:
         text: "LinkedIn Account"
     style: "docked"
     search: true
-    collapse-level: 2
+    collapse-level: 1
     contents:
       - href: index.qmd
         text: Welcome
       - about.qmd
       - section: analysis/index.qmd
+        collapse: true
         contents:
           - analysis/1-data_cleaning.ipynb
           - analysis/2-Choropleth.ipynb
           - analysis/3-Bar_graph.ipynb
       - section: analysis_2/index.qmd
+        collapse: true
         contents: 
           - analysis_2/2.1.ipynb
           - analysis_2/2.2.ipynb
           - analysis_2/2.3.ipynb
           
       - section: Conclusion/Conclusion.qmd
+        collapse: true
         contents:
           - Conclusion/Limitations.qmd
+        
 
 format:
   html:
