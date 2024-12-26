@@ -7,23 +7,17 @@ project:
 website:
   title: "MUSA 550"
   page-footer:
-    left: "delmelle@gmail.com"
+    left: "espejo@upenn.edu"
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
 
   sidebar:
-    logo: "images/course-icon.png"
+    logo: "images/philly.png"
     pinned: true
     align: center
     tools:
-      - icon: globe
-        href: https://www.design.upenn.edu/people/eric-delmelle
-        text: "Personal Website"
-      - icon: github
-        href: https://github.com/MUSA-550-Fall-2024/
-        text: "MUSA 550 GitHub"
-      - icon: twitter
-        href: https://twitter.com/ericdelmelle
-        text: "Eric Delmelle Twitter"
+      - icon: linkedin
+        href: https://www.linkedin.com/in/dennis-ram%C3%B3n-espejo/
+        text: "LinkedIn Account"
     style: "docked"
     search: true
     collapse-level: 2
@@ -33,15 +27,23 @@ website:
       - about.qmd
       - section: analysis/index.qmd
         contents:
-          - analysis/1-python-code-blocks.qmd 
-          - analysis/2-static-images.ipynb
-          - analysis/3-altair-hvplot.ipynb
-          - analysis/4-folium.ipynb
+          - analysis/1-data_cleaning.ipynb
+          - analysis/2-Choropleth.ipynb
+          - analysis/3-Bar_graph.ipynb
+      - section: analysis_2/index.qmd
+        contents: 
+          - analysis_2/2.1.ipynb
+          - analysis_2/2.2.ipynb
+          - analysis_2/2.3.ipynb
+          - analysis_2/2.4.ipynb
+      - section: Conclusion/Conclusion.qmd
+        contents:
+          - Conclusion/next_steps.qmd
 
 format:
   html:
     highlight-style: solarized
-    theme: cosmo
+    theme: sandstone
     css: styles.css
     code-copy: true
     code-overflow: wrap

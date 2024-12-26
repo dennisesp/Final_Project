@@ -1,0 +1,51 @@
+<div class="text-box">
+# Conclusion and Discussion 
+</div>
+
+<div class="text-box">
+
+## Research Questions 
+
+As a refresher this project's research questions were 
+
+
+**1)** What are the differences in Median Household Income of tracts that contain more Black and Latine/Hispanics
+in comparison to White and Latine/Hispanic? 
+
+**2)** How is post-secondary achievement rate (Associate, Bachelors Degree, and/or Master's Degree) influenced by living in the same tract as a post-secondary school building(s). 
+
+  a) How does this trend differ between tracts that have more Black/Latines, than White/Latines and vice versa. 
+        
+</div> 
+        
+<div class="text-box">
+
+## Research Question Conclusions 
+
+Based on the present project's analysis the answers to the research questions are as follows; 
+
+**1)** On average, census tracts with a higher amount of Black Latine/Hispanics have a mean “Median Household Income” that is around $20,000 less compared to census tracts with a higher reported population of White Latine/Hispanics as reported in the 2020 American Community Survey
+
+**2)** Overall, the  presence of college buildings does not significantly impact post-secondary achievement rates, and this does not differ between Census tracts that have more Black/Latines, than White/Latines and vice versa.
+
+</div>
+
+
+<div class="text-box">
+
+
+## Implications
+
+
+
+</div>
+
+
+<div class="text-box">
+
+
+## Next Steps
+
+
+
+</div>

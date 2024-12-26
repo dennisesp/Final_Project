@@ -9,8 +9,9 @@
 
 Part 2 is Dedicated to Answering the Following Research Question 
 
-2) How is post-secondary achievement rate (Associate, Bachelors Degree, and/or Master's Degree) for Latine communities mediated by living in the same tract as a post-secondary school building(s). 
-        a) How does this trend differ between Black-Latines and White-Latines
+2) How is post-secondary achievement rate (Associate/Bachelors Degree) influenced by living in the same tract as a post-secondary school building(s). 
+       
+       a) How does this trend differ between tracts that have more Black/Latines, than White/Latines and vice versa. 
              
 
 </div>
@@ -23,14 +24,25 @@ Part 2 is Dedicated to Answering the Following Research Question
 
 2) Merging building geojson with original "Identity_Per_Tract" dataframe from Part 1
 
-3) Creation of an interactive widget and panel that allows users to scroll through different census tracts,
-and analyze the demographics of each tract that contain 1 or more post-secondary building. 
+3) Creation of a folium map that plots all post-secondary school buildings, along with the median income of each tract in Philadehlpia, and its White-Latine/Black-Latine population.  
 
-4) Statistical analysis (Correlation Coefficient, Standard Error, & P-Value) of demographic variables 
-and school buildings per census tract
 
-5) Creation of a correlation heatmap with hvplot with a touchtip that shows the correlation, standard error, and p-value
-between the relationships of all demographic variables and school buildings per tract/ 
+4) Development of three bar charts with altair displaying the relationship between socioeconomic status (Median Household Income)
+and post-secondary achievement (Associates & Bachelors) with census tracts that have a post-secondary building, and those that do not.
+Each bar chart has two sets of bars (Building vs No Building) and the bar charts are differentiated based on which overarching tracts are included in analysis. The seperation of tracts are as follows; 
+
+    a) Bar chart contaning all census tracts in Philadelphia
+    b) Bar chart of tracts with more White Latines than Black Latines
+    c) Bar chart of tracts with more Black Latines than White Latines
+
+
+**Bonus**
+
+5) Statistical analysis (Correlation Coefficient, Standard Error, & P-Value) of demographic variables 
+and presence of post-secondary school buildings per census tract.  
+
+6) Creation of  correlation heatmap with hvplot with a touchtip that shows the correlation, standard error, and p-value
+between the relationships of all demographic variables and school buildings per tract 
 
 </div>
 

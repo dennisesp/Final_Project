@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>quarto-inputd5c902f2d594f828 – MUSA 550</title>
+<title>quarto-inputc3a0e9c3ae2dabc0 – MUSA 550</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -209,7 +209,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../analysis_2/2.3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2.3 Statistical Analysis and Heatmap</span></a>
+ <span class="menu-text">2.3 Bar Graphs of Tracts with College Buildings vs Tracts Without College Buildings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis_2/2.4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.4 <strong>BONUS</strong> Statistical Analysis and Seaborn Heatmap</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../Conclusion/Conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conclusion and Discussion</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Conclusion/next_steps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">next_steps.html</span></a>
   </div>
 </li>
       </ul>
@@ -230,12 +253,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>2.1 Data Merging and Cleaning</h1>
 <p>In this part I,</p>
 <ol type="1">
-<li><p>Download the data from open data Philly, and the geojson demographic/tract dataframe from Part 1.1</p></li>
-<li><p>Merge both of the data frames</p></li>
-<li><p>Clean the data frame contaning columns that I want for the analysis</p></li>
+<li><p>Download data from open data Philly that contains the geometry of every post-secondary building in the city, and the geojson demographic/tract dataframe from Part 1.1</p></li>
+<li><p>Merge both of these data frames</p></li>
+<li><p>Clean the data frame to only include columns that I want for analysis</p></li>
 <li><p>Save the cleaned dataframe into a geojson file for use in part 2.2</p></li>
 </ol>
-<div id="56babcb2-7147-44fa-a2c2-8396615f0516" class="cell" data-tags="[]" data-execution_count="4">
+</section>
+<div class="text-box">
+<div id="56babcb2-7147-44fa-a2c2-8396615f0516" class="cell" data-tags="[]" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>college_buildings<span class="op">=</span>gpd.read_file(<span class="st">"Universities_Colleges.geojson"</span>)</span>
@@ -268,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>buildings_per_tract_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -475,9 +500,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section>
+</div>
 <div class="text-box">
-<p>Now I have all of the college buildings across Philadelphia with their geometries, census tracts, and demographics of the census tracts they are in. This is essential for part 2.2</p>
+<p>Now I have all of the college buildings across Philadelphia with their geometries, census tracts, and demographics of the census tracts they are in. This is essential for parts 2.2 and 2.3</p>
 </div>
 
 

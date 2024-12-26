@@ -7,8 +7,9 @@
 
 Part 1 is Dedicated to Answering the Following Research Question 
 
-1) What are the differences in Median Household Income of tracts that contain more Black and Latino/Hispanics
-in comparison to White and Latino/Hispanic? 
+1) What are the differences in Median Household Income of tracts that contain more Black-Latines
+in comparison to White Latines/Hispanic? 
+
 
 </div>
 

@@ -209,7 +209,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../analysis_2/2.3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2.3 Statistical Analysis and Heatmap</span></a>
+ <span class="menu-text">2.3 Bar Graphs of Tracts with College Buildings vs Tracts Without College Buildings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis_2/2.4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.4 <strong>BONUS</strong> Statistical Analysis and Seaborn Heatmap</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../Conclusion/Conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conclusion and Discussion</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Conclusion/next_steps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">next_steps.html</span></a>
   </div>
 </li>
       </ul>
@@ -233,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="text-box">
 <p><strong>Bar Plot Comparing Black/Latino vs White/Latino Predominate Census Tracts</strong></p>
 <p>Below I’m including a bar plot that demonstraes the comparison of the Mean Median Household Incomes of Black/Latino vs White/Latino Census Tracts using Altair</p>
-<div id="8358108b-abec-4108-9adb-d8322ab2c4dc" class="cell" data-tags="[]" data-execution_count="7">
+<div id="8358108b-abec-4108-9adb-d8322ab2c4dc" class="cell" data-tags="[]" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>identity_with_tracts<span class="op">=</span>gpd.read_file(<span class="st">"identity_with_tracts.geojson"</span>)</span>
@@ -298,26 +321,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>chart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="2">
 
 <style>
-  #altair-viz-b75cf2b3a4384e2d8738533f703f0e60.vega-embed {
+  #altair-viz-e806d9e5a0994530be692bd8e6792f5e.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-b75cf2b3a4384e2d8738533f703f0e60.vega-embed details,
-  #altair-viz-b75cf2b3a4384e2d8738533f703f0e60.vega-embed details summary {
+  #altair-viz-e806d9e5a0994530be692bd8e6792f5e.vega-embed details,
+  #altair-viz-e806d9e5a0994530be692bd8e6792f5e.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-b75cf2b3a4384e2d8738533f703f0e60"></div>
+<div id="altair-viz-e806d9e5a0994530be692bd8e6792f5e"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-b75cf2b3a4384e2d8738533f703f0e60") {
-      outputDiv = document.getElementById("altair-viz-b75cf2b3a4384e2d8738533f703f0e60");
+    if (outputDiv.id !== "altair-viz-e806d9e5a0994530be692bd8e6792f5e") {
+      outputDiv = document.getElementById("altair-viz-e806d9e5a0994530be692bd8e6792f5e");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -372,9 +395,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
 <p>Based off of the above Altair bar plot, the following conclusion can be made;</p>
 <p><strong>On average, census tracts with a higher amount of Black Latine/Hispanics have a median “Median Household Income” that is around $20,000 less compared to census tracts with a higher reported population of White Latine/Hispanics as reported in the 2020 American Community Survey</strong></p>
-<p>The previous statement answers the first research question “What are the differences between Median Household Income of tracts that contain more Black and Latino/Hispanics in comparison to White and Latino/Hispanic”.</p>
+<p>The previous statement answers the first research question “What are the differences between Median Household Income of tracts that contain more Black Latino/Hispanics in comparison to White Latino/Hispanic”.</p>
 <p>Finding the differences in Median Household Income between White-Latino and Black-Latinos are important to showcase the racial differences within the broad Latino ethnic identity. Findings such as these can begin to cataylyze efforts in disaggregating Latino identity in data.</p>
-<p>Specifically, these findings can influence organization, such as post-secondary institutions, to begin noticing the differences within racial identity within the broad Latine ethnicity. Highiltghing potential disapprities within the Latine identity can influence post-secondary institutions to begin allocating resources and support to more marginalized Latine racial groups.</p>
+<p>Specifically, these findings can influence organizations, such as post-secondary institutions, to begin noticing the differences within racial identity within the broad Latine ethnicity. Highiltghing potential disapprities within the Latine identity can influence post-secondary institutions to begin allocating resources and support to more marginalized Latine racial groups.</p>
 </section>
 
 
