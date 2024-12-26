@@ -37,7 +37,7 @@ The current project was limited by multiple factors:
 
 2) The method in which I distinguished Black-Latines, and White-Latines may be limited by the presence of other demographics that may influence trends within the chosen census tracts. Future studies should do an additional analysis of seperate demographic variables to analyze how these correlate within census tracts that have more Black-Latines than White-Latines and vice-versa. 
 
-3) Using more sophisticated statistical analysis (such as Moran's I) to test the influence of not only living within a census tract that has a post-secondary insititution, but also the effect of living in a census tract that neighboor's a post-secondary instiution. 
+3) Lack of more sophisticated statistical analysis (such as Moran's I) to test the influence of not only living within a census tract that has a post-secondary insititution, but also the effect of living in a census tract that neighboor's a post-secondary instiution. 
 
 
 
