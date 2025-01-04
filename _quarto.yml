@@ -23,7 +23,7 @@ website:
     collapse-level: 1
     contents:
       - href: index.qmd
-        text: Welcome
+        text: Project Overview
       - about.qmd
       - section: analysis/index.qmd
         collapse: true
